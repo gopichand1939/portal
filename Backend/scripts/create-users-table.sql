@@ -1,0 +1,3 @@
+-- Your users table already exists in the remote DB.
+-- Backend uses these columns: id, name, email, password, "firstName", "lastName", role, "createdAt", "updatedAt".
+-- Do not run any CREATE TABLE; the app uses your existing users table.
