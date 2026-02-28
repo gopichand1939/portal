@@ -20,31 +20,30 @@ function PythonContent() {
       : { selectedNode: null, selectedPath: [] }
   }, [nodeId])
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-4">
+    <div className="mx-auto max-w-5xl space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/daily-learning"
-          className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+          className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:border-gray-300 hover:bg-gray-50"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back
+          Back to Daily Learning
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight text-gray-900 md:text-3xl">
             Python Programming
           </h1>
           <p className="mt-1 text-gray-600">
-            Module-wise learning — select a topic from the sidebar
+            Study → Exercise → Assignment. Pick a topic from the sidebar.
           </p>
         </div>
       </div>
 
-      <div className="min-h-[400px]">
-<ModuleContentPanel
-  selectedNode={selectedNode}
-  path={selectedPath}
-/>
-
+      <div className="min-h-[420px]">
+        <ModuleContentPanel
+          selectedNode={selectedNode}
+          path={selectedPath}
+        />
       </div>
     </div>
   )

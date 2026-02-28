@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { CheckCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, CheckCircle, HelpCircle } from 'lucide-react'
 
 interface ExerciseQuestion {
   id: number
@@ -20,87 +20,155 @@ interface ExercisePanelProps {
 }
 
 export default function ExercisePanel({ exercise }: ExercisePanelProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [submitted, setSubmitted] = useState(false)
 
+  const q = exercise.questions[currentIndex]
+  const total = exercise.questions.length
+  const selected = q ? answers[q.id] : undefined
+  const showFeedback = selected !== undefined
+  const isCorrect = q && selected === q.correctIndex
+
   const score = submitted
-    ? exercise.questions.filter(
-        (q) => answers[q.id] === q.correctIndex
-      ).length
+    ? exercise.questions.filter((q) => answers[q.id] === q.correctIndex).length
     : 0
 
+  if (submitted) {
+    return (
+      <div className="mx-auto max-w-lg space-y-6">
+        <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
+            <CheckCircle className="h-8 w-8 text-emerald-600" />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900">Practice complete</h3>
+          <p className="mt-2 text-gray-600">
+            You got <span className="font-semibold text-gray-900">{score}</span> of{' '}
+            <span className="font-semibold text-gray-900">{total}</span> correct.
+          </p>
+          <p className="mt-1 text-sm text-gray-500">
+            Keep revising the study material and try again to improve.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className="space-y-8">
-      <h3 className="text-2xl font-bold text-gray-900">
-        {exercise.title}
-      </h3>
+    <div className="mx-auto max-w-2xl space-y-6">
+      <div>
+        <h2 className="text-lg font-semibold text-gray-900">{exercise.title}</h2>
+        <p className="mt-1 text-sm text-gray-500">
+          Practice — no pressure. Answer and see feedback, then move to the next.
+        </p>
+      </div>
 
-      {exercise.questions.map((q, index) => (
-        <div
-          key={q.id}
-          className="rounded-lg border border-gray-200 bg-gray-50 p-6"
-        >
-          <div className="mb-2 text-sm text-gray-600">
-            Question {index + 1} of {exercise.questions.length}
-          </div>
-
-          <p className="mb-4 font-semibold text-gray-900">
-            {q.question}
-          </p>
-
-          <div className="space-y-3">
-            {q.options.map((opt, idx) => {
-              const selected = answers[q.id] === idx
-              const correct = q.correctIndex === idx
-
-              let style = 'border-gray-200 bg-white'
-              if (submitted) {
-                if (correct) style = 'border-green-400 bg-green-50'
-                else if (selected) style = 'border-red-400 bg-red-50'
-              } else if (selected) {
-                style = 'border-primary-500 bg-primary-50'
-              }
-
-              return (
-                <label
-                  key={idx}
-                  className={`flex cursor-pointer items-center gap-3 rounded-lg border p-3 ${style}`}
-                >
-                  <input
-                    type="radio"
-                    name={`exercise-${q.id}`}
-                    checked={selected}
-                    disabled={submitted}
-                    onChange={() =>
-                      setAnswers({ ...answers, [q.id]: idx })
-                    }
-                    className="h-4 w-4 text-primary-600"
-                  />
-                  <span className="text-sm text-gray-800">
-                    {opt}
-                  </span>
-                </label>
-              )
-            })}
-          </div>
+      <div className="flex items-center gap-3">
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-200">
+          <div
+            className="h-full rounded-full bg-primary-500 transition-all duration-300"
+            style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
+          />
         </div>
-      ))}
+        <span className="text-sm font-medium text-gray-600">
+          {currentIndex + 1} / {total}
+        </span>
+      </div>
 
-      {!submitted ? (
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/50 p-6 sm:p-8">
+        <p className="mb-6 text-lg font-medium leading-relaxed text-gray-900">
+          {q.question}
+        </p>
+
+        <div className="space-y-3">
+          {q.options.map((opt, idx) => {
+            const chosen = selected === idx
+            const correct = q.correctIndex === idx
+            let style =
+              'border-gray-200 bg-white hover:border-primary-300 hover:bg-primary-50/50'
+            if (showFeedback) {
+              if (correct) style = 'border-emerald-300 bg-emerald-50/80 text-emerald-900'
+              else if (chosen && !correct) style = 'border-amber-300 bg-amber-50/80 text-amber-900'
+            } else if (chosen) {
+              style = 'border-primary-400 bg-primary-50 text-primary-900'
+            }
+
+            return (
+              <label
+                key={idx}
+                className={`flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition-all ${style} ${
+                  showFeedback ? 'cursor-default' : ''
+                }`}
+              >
+                <input
+                  type="radio"
+                  name={`exercise-${q.id}`}
+                  checked={chosen}
+                  disabled={showFeedback}
+                  onChange={() => setAnswers({ ...answers, [q.id]: idx })}
+                  className="h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500"
+                />
+                <span className="text-gray-800">{opt}</span>
+              </label>
+            )
+          })}
+        </div>
+
+        {showFeedback && (
+          <div
+            className={`mt-6 flex items-start gap-3 rounded-xl p-4 ${
+              isCorrect ? 'bg-emerald-50' : 'bg-amber-50'
+            }`}
+          >
+            {isCorrect ? (
+              <CheckCircle className="h-5 w-5 shrink-0 text-emerald-600" />
+            ) : (
+              <HelpCircle className="h-5 w-5 shrink-0 text-amber-600" />
+            )}
+            <p className={`text-sm font-medium ${isCorrect ? 'text-emerald-800' : 'text-amber-800'}`}>
+              {isCorrect ? 'Correct. Well done!' : 'Not quite. Review the study material and try again.'}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="flex items-center justify-between gap-4">
         <button
-          onClick={() => setSubmitted(true)}
-          className="w-full rounded-lg bg-primary-600 py-3 font-semibold text-white hover:bg-primary-700"
+          type="button"
+          onClick={() => setCurrentIndex((i) => Math.max(0, i - 1))}
+          disabled={currentIndex === 0}
+          className="flex items-center gap-1 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Submit Exercise
+          <ChevronLeft className="h-4 w-4" />
+          Previous
         </button>
-      ) : (
-        <div className="rounded-lg border-2 border-green-200 bg-green-50 p-6 text-center">
-          <CheckCircle className="mx-auto mb-2 h-8 w-8 text-green-600" />
-          <p className="text-lg font-bold text-gray-900">
-            Score: {score} / {exercise.questions.length}
-          </p>
-        </div>
-      )}
+        {!submitted ? (
+          <button
+            type="button"
+            onClick={() => {
+              if (currentIndex < total - 1) setCurrentIndex((i) => i + 1)
+              else setSubmitted(true)
+            }}
+            disabled={selected === undefined}
+            className="rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {currentIndex < total - 1 ? 'Next question' : 'Finish practice'}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() =>
+              currentIndex < total - 1
+                ? setCurrentIndex((i) => i + 1)
+                : setSubmitted(true)
+            }
+            className="flex items-center gap-1 rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+          >
+            {currentIndex < total - 1 ? 'Next' : 'See results'}
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        )}
+      </div>
     </div>
   )
 }

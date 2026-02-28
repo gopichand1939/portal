@@ -6,6 +6,7 @@ import { useLearningProgress } from '@/contexts/LearningProgressContext'
 import CodingPracticePanel from '@/components/learning/CodingPracticePanel'
 import ExercisePanel from '@/components/learning/ExercisePanel'
 import AssignmentPanel from '@/components/learning/AssignmentPanel'
+import StudyContentView from '@/components/learning/StudyContentView'
 import {
   studyContentMap,
   exerciseContentMap,
@@ -54,41 +55,38 @@ export default function ModuleContentPanel({
     )
   }
 
+  const studyContent = isStudy && studyContentMap[selectedNode.id]
+
   return (
-    <div className="flex flex-1 flex-col rounded-xl border bg-white p-6 shadow-sm">
-      {/* HEADER */}
-      <div className="mb-4 border-b pb-4">
-        <p className="text-sm text-gray-500">{path.join(' → ')}</p>
-        <h2 className="text-xl font-bold text-gray-900">
-          {selectedNode.label}
-        </h2>
+    <div className="flex flex-1 flex-col rounded-2xl border border-gray-200 bg-white shadow-sm">
+      {/* Breadcrumb */}
+      <div className="border-b border-gray-100 px-6 py-3">
+        <p className="text-xs font-medium text-gray-500">
+          {path.join(' → ')}
+        </p>
       </div>
 
-      {/* CONTENT */}
-      <div className="flex-1 space-y-6">
-
-        {isStudy && studyContentMap[selectedNode.id] && (
-          <div>
-            <h3 className="text-2xl font-bold">
-              {studyContentMap[selectedNode.id].title}
-            </h3>
-            <p className="mt-2 text-gray-600">
-              {studyContentMap[selectedNode.id].description}
-            </p>
-
-            {studyContentMap[selectedNode.id].sections.map(
-              (sec: any, i: number) => (
-                <div key={i} className="mt-4">
-                  <h4 className="font-semibold">{sec.heading}</h4>
-                  <ul className="list-disc pl-6">
-                    {sec.points.map((p: string, j: number) => (
-                      <li key={j}>{p}</li>
-                    ))}
-                  </ul>
-                </div>
-              )
+      <div className="flex-1 p-6 pb-8">
+        {isStudy && studyContent && (
+          <>
+            <StudyContentView content={studyContent} />
+            {isLeaf && (
+              <div className="mt-8 flex justify-end border-t border-gray-100 pt-6">
+                <button
+                  onClick={() => !completed && markComplete(selectedNode.id)}
+                  disabled={completed}
+                  className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
+                    completed
+                      ? 'bg-primary-100 text-primary-700'
+                      : 'bg-primary-600 text-white hover:bg-primary-700'
+                  }`}
+                >
+                  <CheckCircle className="h-5 w-5" />
+                  {completed ? 'Completed' : 'Mark as complete'}
+                </button>
+              </div>
             )}
-          </div>
+          </>
         )}
 
         {isExercise && exerciseContentMap[selectedNode.id] && (
@@ -100,13 +98,13 @@ export default function ModuleContentPanel({
         )}
       </div>
 
-      {/* FOOTER */}
-      {isLeaf && (
-        <div className="mt-6 border-t pt-4 flex justify-end">
+      {/* Footer for exercise/assignment */}
+      {isLeaf && !isStudy && (isExercise || isAssignment) && (
+        <div className="border-t border-gray-100 px-6 py-4 flex justify-end">
           <button
             onClick={() => !completed && markComplete(selectedNode.id)}
             disabled={completed}
-            className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold ${
+            className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
               completed
                 ? 'bg-primary-100 text-primary-700'
                 : 'bg-primary-600 text-white hover:bg-primary-700'
