@@ -1,7 +1,6 @@
 'use client'
 
 import { Suspense, useMemo } from 'react'
-import DashboardLayout from '@/components/layout/DashboardLayout'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
@@ -51,10 +50,8 @@ function ReasoningContent() {
 
 export default function ReasoningPage() {
   return (
-    <DashboardLayout>
-      <Suspense fallback={<div className="p-6 text-gray-500">Loading…</div>}>
-        <ReasoningContent />
-      </Suspense>
-    </DashboardLayout>
+    <Suspense fallback={<div className="p-6 text-gray-500">Loading…</div>}>
+      <ReasoningContent />
+    </Suspense>
   )
 }

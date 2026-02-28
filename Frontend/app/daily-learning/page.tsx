@@ -1,6 +1,5 @@
 'use client'
 
-import DashboardLayout from '@/components/layout/DashboardLayout'
 import Link from 'next/link'
 import {
   Calculator,
@@ -99,8 +98,7 @@ export default function DailyLearningPage() {
   const { completedIds } = useLearningProgress()
 
   return (
-    <DashboardLayout>
-      <div className="mx-auto max-w-6xl space-y-8">
+    <div className="mx-auto max-w-6xl space-y-8">
         <div className="text-center sm:text-left">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Daily Learning
@@ -180,6 +178,5 @@ export default function DailyLearningPage() {
           })}
         </div>
       </div>
-    </DashboardLayout>
   )
 }

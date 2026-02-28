@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
-import DashboardLayout from '@/components/layout/DashboardLayout'
 import ProgressCard from '@/components/ui/ProgressCard'
 import {
   BookOpen,
@@ -64,8 +63,7 @@ export default function AptitudeDayPage() {
   const aptitudeTestQuestions = dayContent.testQuestions
 
   return (
-    <DashboardLayout>
-      <div className="space-y-6">
+    <div className="space-y-6">
         {/* Page Header */}
         <div className="flex items-center gap-4">
           <Link
@@ -593,7 +591,6 @@ export default function AptitudeDayPage() {
           )}
         </div>
       </div>
-    </DashboardLayout>
   )
 }
 

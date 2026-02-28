@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { BookOpen, CheckCircle } from 'lucide-react'
 import type { ModuleNode } from '@/data/learningModules'
 import { useLearningProgress } from '@/contexts/LearningProgressContext'
@@ -18,7 +19,7 @@ interface ModuleContentPanelProps {
   path: string[]
 }
 
-export default function ModuleContentPanel({
+function ModuleContentPanel({
   selectedNode,
   path,
 }: ModuleContentPanelProps) {
@@ -118,3 +119,5 @@ export default function ModuleContentPanel({
     </div>
   )
 }
+
+export default memo(ModuleContentPanel)

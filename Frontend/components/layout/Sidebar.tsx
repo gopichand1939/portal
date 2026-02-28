@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, Suspense, memo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -53,7 +53,7 @@ interface SidebarProps {
 
 type DailySection = 'aptitude' | 'reasoning' | 'verbal' | 'python'
 
-export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
+function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const pathname = usePathname()
   const [expandedMenus, setExpandedMenus] = useState<string[]>(() => {
     const expanded: string[] = []
@@ -394,3 +394,4 @@ export default function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   )
 }
 
+export default memo(Sidebar)
