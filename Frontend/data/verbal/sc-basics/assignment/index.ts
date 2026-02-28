@@ -1,9 +1,25 @@
-export const placeholder = {
+export const scBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Correct sentence:', options: ['The list of items are on the table.', 'The list of items is on the table.', 'The list of items am on the table.', 'The list of items be on the table.'], correctIndex: 1, explanation: 'Subject is list, singular.' },
+    { id: 2, question: 'Which is correct?', options: ['Neither the manager nor the employees was present.', 'Neither the manager nor the employees were present.', 'Neither the manager nor the employees is present.', 'Neither manager nor employees were present.'], correctIndex: 1, explanation: 'Closest to verb is employees, plural.' },
+    { id: 3, question: 'Error-free sentence:', options: ['She asked me what was my name.', 'She asked me what my name was.', 'She asked me what my name is.', 'She asked what is my name.'], correctIndex: 1, explanation: 'Indirect question: subject before verb.' },
+    { id: 4, question: 'Correct: One must do ___ duty.', options: ['their', 'ones', 'his', 'her'], correctIndex: 1, explanation: 'One takes ones (possessive).' },
+    { id: 5, question: 'The teacher as well as the students ___ present.', options: ['was', 'were', 'are', 'have been'], correctIndex: 0, explanation: 'Main subject is teacher.' },
+    { id: 6, question: 'Neither of the two candidates ___ suitable.', options: ['are', 'is', 'were', 'have been'], correctIndex: 1, explanation: 'Neither of + plural takes singular.' },
+    { id: 7, question: 'Having finished the work, ___.', options: ['the laptop was shut', 'he shut the laptop', 'the laptop shut', 'laptop was shut'], correctIndex: 1, explanation: 'Subject of participle must be he.' },
+    { id: 8, question: 'By the time we arrived, the show ___.', options: ['started', 'had started', 'has started', 'starts'], correctIndex: 1, explanation: 'Past perfect for earlier past.' },
+    { id: 9, question: 'The number of students ___.', options: ['have increased', 'has increased', 'are increased', 'were increased'], correctIndex: 1, explanation: 'The number is singular.' },
+    { id: 10, question: 'Ten miles ___ a long distance.', options: ['are', 'is', 'were', 'have been'], correctIndex: 1, explanation: 'Quantity as unit: singular.' },
+    { id: 11, question: 'He is the only one of the members who ___ agreed.', options: ['have', 'has', 'had', 'are'], correctIndex: 1, explanation: 'The only one is subject.' },
+    { id: 12, question: 'The committee ___ divided.', options: ['are', 'is', 'were', 'have been'], correctIndex: 1, explanation: 'Committee as unit: singular.' },
+    { id: 13, question: 'She not only sings but ___.', options: ['also dances', 'dances also', 'dancing', 'to dance'], correctIndex: 0, explanation: 'Parallel structure.' },
+    { id: 14, question: 'It is I who ___ responsible.', options: ['is', 'am', 'are', 'be'], correctIndex: 1, explanation: 'Who refers to I.' },
+    { id: 15, question: 'Many a student ___.', options: ['have failed', 'has failed', 'had failed', 'are failed'], correctIndex: 1, explanation: 'Many a + singular: singular verb.' },
+    { id: 16, question: 'One of the boys who ___ present ___ to speak.', options: ['was / was asked', 'were / was asked', 'were / were asked', 'was / were asked'], correctIndex: 1, explanation: 'Who = boys; one was asked.' },
+    { id: 17, question: 'Correct: She is older than ___.', options: ['me', 'I', 'I am', 'B or C'], correctIndex: 3, explanation: 'Than I am or than me both used.' },
+    { id: 18, question: 'Everyone must bring ___ book.', options: ['their', 'his or her', 'ones', 'B or C'], correctIndex: 3, explanation: 'His or her or ones.' },
+    { id: 19, question: 'Data ___ incorrect.', options: ['are', 'is', 'were', 'B or A'], correctIndex: 3, explanation: 'Data can be singular or plural.' },
+    { id: 20, question: 'Which has no error?', options: ['He is the only one of the members who have agreed.', 'He is the only one of the members who has agreed.', 'He is only one of the members who has agreed.', 'He is the only one of the member who has agreed.'], correctIndex: 1, explanation: 'The only one takes singular verb.' },
+  ],
 }

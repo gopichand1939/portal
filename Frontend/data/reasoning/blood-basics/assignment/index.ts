@@ -1,9 +1,25 @@
-export const placeholder = {
+export const bloodBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'A is B’s father. B is C’s mother. How is A related to C?', options: ['Father', 'Grandfather', 'Uncle', 'Grandmother'], correctIndex: 1, explanation: 'A → parent of B → parent of C; so A is grandfather of C.' },
+    { id: 2, question: 'P’s mother’s husband is Q. How is Q related to P?', options: ['Uncle', 'Father', 'Brother', 'Grandfather'], correctIndex: 1, explanation: 'Mother’s husband is father.' },
+    { id: 3, question: 'X is the only daughter of Y. How is Y related to X?', options: ['Father or Mother', 'Uncle', 'Brother', 'Grandfather'], correctIndex: 0, explanation: 'Parent of only daughter.' },
+    { id: 4, question: 'M’s father’s sister is N. How is N related to M?', options: ['Mother', 'Aunt', 'Sister', 'Cousin'], correctIndex: 1, explanation: 'Father’s sister is paternal aunt.' },
+    { id: 5, question: 'A and B are sisters. C is the brother of A. How is C related to B?', options: ['Brother', 'Cousin', 'Uncle', 'Father'], correctIndex: 0, explanation: 'Same parents as B.' },
+    { id: 6, question: 'P’s son’s wife is Q. How is Q related to P?', options: ['Daughter', 'Daughter-in-law', 'Sister', 'Mother'], correctIndex: 1, explanation: 'Son’s wife is daughter-in-law.' },
+    { id: 7, question: 'R’s mother’s mother is S. How is S related to R?', options: ['Aunt', 'Grandmother', 'Mother', 'Sister'], correctIndex: 1, explanation: 'Mother’s mother is grandmother.' },
+    { id: 8, question: 'K’s father has only two children, K and L. How is L related to K?', options: ['Brother or Sister', 'Cousin', 'Uncle', 'Nephew'], correctIndex: 0, explanation: 'Only two children; so sibling.' },
+    { id: 9, question: 'M is N’s wife. P is N’s son. How is M related to P?', options: ['Aunt', 'Mother', 'Sister', 'Daughter'], correctIndex: 1, explanation: 'N’s wife and N’s son → mother.' },
+    { id: 10, question: 'A’s brother’s sister is B. How is B related to A?', options: ['Sister', 'Cousin', 'Aunt', 'Mother'], correctIndex: 0, explanation: 'A’s brother’s sister can be A (if sister) or another sister.' },
+    { id: 11, question: 'X’s daughter’s husband is Y. How is Y related to X?', options: ['Son', 'Son-in-law', 'Brother', 'Uncle'], correctIndex: 1, explanation: 'Daughter’s husband is son-in-law.' },
+    { id: 12, question: 'P’s mother’s only son is Q. How is Q related to P?', options: ['P himself or Brother', 'Uncle', 'Father', 'Cousin'], correctIndex: 0, explanation: 'Mother’s only son is P or brother.' },
+    { id: 13, question: 'R is S’s grandfather. S is T’s son. How is R related to T?', options: ['Father', 'Grandfather', 'Uncle', 'Father-in-law'], correctIndex: 0, explanation: 'S is T’s son; R is S’s grandfather so R is T’s father.' },
+    { id: 14, question: 'A’s wife’s brother is B. How is B related to A?', options: ['Brother', 'Brother-in-law', 'Uncle', 'Cousin'], correctIndex: 1, explanation: 'Wife’s brother is brother-in-law.' },
+    { id: 15, question: 'M’s father’s father is N. How is N related to M?', options: ['Uncle', 'Grandfather', 'Father', 'Brother'], correctIndex: 1, explanation: 'Father’s father is grandfather.' },
+    { id: 16, question: 'P and Q are married. R is P’s son. How is Q related to R?', options: ['Mother or Step-mother', 'Aunt', 'Sister', 'Daughter'], correctIndex: 0, explanation: 'P’s spouse and P’s son → mother (or step-mother).' },
+    { id: 17, question: 'K’s sister’s husband is L. How is L related to K?', options: ['Brother', 'Brother-in-law', 'Uncle', 'Cousin'], correctIndex: 1, explanation: 'Sister’s husband is brother-in-law.' },
+    { id: 18, question: 'A is B’s daughter. C is B’s wife. How is A related to C?', options: ['Daughter', 'Sister', 'Mother', 'Niece'], correctIndex: 0, explanation: 'B’s wife and B’s daughter → C is A’s mother, A is C’s daughter.' },
+    { id: 19, question: 'X’s grandfather’s only daughter is Y. How is Y related to X?', options: ['Mother or Aunt', 'Sister', 'Grandmother', 'Cousin'], correctIndex: 0, explanation: 'Grandfather’s only daughter could be X’s mother or aunt.' },
+    { id: 20, question: 'M is N’s uncle. N is P’s son. How is M related to P?', options: ['Brother', 'Father', 'Uncle', 'Cousin'], correctIndex: 0, explanation: 'N’s uncle is brother of N’s parent; if N is P’s son, M can be P’s brother.' },
+  ],
 }

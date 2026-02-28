@@ -1,9 +1,25 @@
-export const placeholder = {
+export const fillBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'She is allergic ___ nuts.', options: ['for', 'to', 'with', 'in'], correctIndex: 1, explanation: 'Allergic to.' },
+    { id: 2, question: 'He is superior ___ me.', options: ['than', 'to', 'from', 'over'], correctIndex: 1, explanation: 'Superior to.' },
+    { id: 3, question: 'We are ___ with the result.', options: ['satisfying', 'satisfied', 'satisfaction', 'satisfy'], correctIndex: 1, explanation: 'Adjective.' },
+    { id: 4, question: '___ he tried, he failed.', options: ['Although', 'However', 'Despite', 'Because'], correctIndex: 0, explanation: 'Although plus clause.' },
+    { id: 5, question: 'She is good ___ maths.', options: ['in', 'at', 'for', 'on'], correctIndex: 1, explanation: 'Good at.' },
+    { id: 6, question: 'He was prevented ___ leaving.', options: ['from', 'to', 'for', 'in'], correctIndex: 0, explanation: 'Prevented from.' },
+    { id: 7, question: 'She is ___ than her sister.', options: ['more tall', 'taller', 'tallest', 'most tall'], correctIndex: 1, explanation: 'Comparative.' },
+    { id: 8, question: 'He is interested ___ learning.', options: ['in', 'for', 'to', 'at'], correctIndex: 0, explanation: 'Interested in.' },
+    { id: 9, question: 'The report was ___ by her.', options: ['wrote', 'written', 'writing', 'writes'], correctIndex: 1, explanation: 'Passive.' },
+    { id: 10, question: 'She is ___ of the three.', options: ['good', 'better', 'best', 'the best'], correctIndex: 3, explanation: 'Superlative.' },
+    { id: 11, question: 'He is accustomed ___ hard work.', options: ['for', 'to', 'with', 'in'], correctIndex: 1, explanation: 'Accustomed to.' },
+    { id: 12, question: 'The matter is ___ discussion.', options: ['in', 'under', 'at', 'on'], correctIndex: 1, explanation: 'Under discussion.' },
+    { id: 13, question: '___ you run, you will be late.', options: ['Unless', 'If', 'Although', 'Because'], correctIndex: 0, explanation: 'Unless means if not.' },
+    { id: 14, question: 'The room is ___ for ten people.', options: ['enough big', 'big enough', 'enough', 'big'], correctIndex: 1, explanation: 'Enough after adjective.' },
+    { id: 15, question: 'She is ___ to pain.', options: ['sensitive', 'sensitivity', 'sensitively', 'sense'], correctIndex: 0, explanation: 'Adjective.' },
+    { id: 16, question: 'We need to ___ the problem.', options: ['solution', 'solve', 'solving', 'solved'], correctIndex: 1, explanation: 'Verb needed.' },
+    { id: 17, question: 'She ___ to school daily.', options: ['go', 'goes', 'going', 'gone'], correctIndex: 1, explanation: 'Habit present.' },
+    { id: 18, question: 'He was ___ for the post.', options: ['selected', 'select', 'selecting', 'selection'], correctIndex: 0, explanation: 'Passive.' },
+    { id: 19, question: '___ his fault, we missed the bus.', options: ['Because', 'Due to', 'Although', 'However'], correctIndex: 1, explanation: 'Due to plus noun.' },
+    { id: 20, question: 'The book is ___ the table.', options: ['in', 'on', 'at', 'by'], correctIndex: 1, explanation: 'On the table.' },
+  ],
 }

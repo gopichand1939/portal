@@ -1,9 +1,95 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const puzzlesBasicsAssignment = {
+  title: 'Puzzles – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Which topic is closely related to puzzles?',
+      options: ['Data Interpretation', 'Arrangement', 'Geometry', 'Probability'],
+      correctIndex: 1,
+    },
+    {
+      id: 2,
+      question: 'Which puzzle type uses ranks and order?',
+      options: ['Comparison', 'Scheduling', 'Floor', 'Coding'],
+      correctIndex: 0,
+    },
+    {
+      id: 3,
+      question: 'Which is NOT a puzzle type?',
+      options: ['Seating', 'Floor', 'Percentage', 'Scheduling'],
+      correctIndex: 2,
+    },
+    {
+      id: 4,
+      question: 'If a condition contradicts others, it is?',
+      options: ['Accepted', 'Ignored', 'Rejected', 'Assumed'],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'Which is essential for puzzle accuracy?',
+      options: ['Speed', 'Luck', 'Checking all clues', 'Guessing'],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Puzzle questions are generally?',
+      options: ['Very easy', 'Very difficult', 'Moderate to difficult', 'Random'],
+      correctIndex: 2,
+    },
+    {
+      id: 7,
+      question: 'What improves puzzle solving most?',
+      options: ['Memorizing', 'Regular practice', 'Skipping', 'Guessing'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'Which step comes last in puzzle solving?',
+      options: ['Reading clues', 'Drawing table', 'Verifying all conditions', 'Guessing'],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'Which mistake is most common in puzzles?',
+      options: ['Drawing diagrams', 'Assumptions', 'Practice', 'Checking'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Puzzle questions mainly appear in?',
+      options: ['Math section', 'Reasoning section', 'English section', 'GK section'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which approach is best for puzzles?',
+      options: ['Random solving', 'Step-by-step logic', 'Fast guessing', 'Skipping'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Puzzles become easy with?',
+      options: ['Luck', 'Practice and patience', 'Speed', 'Guessing'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Which puzzle uses circular logic?',
+      options: ['Row seating', 'Circular seating', 'Floor', 'Ranking'],
+      correctIndex: 1,
+    },
+    {
+      id: 14,
+      question: 'In puzzles, each clue should be?',
+      options: ['Ignored', 'Verified', 'Assumed', 'Skipped'],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Final rule of puzzle solving is?',
+      options: ['Guess answer', 'Trust intuition', 'Check all conditions', 'Skip review'],
+      correctIndex: 2,
+    },
+  ],
 }

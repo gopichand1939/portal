@@ -1,9 +1,145 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const dataArrangementBasicsAssignment = {
+  title: 'Data Arrangement – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Six persons sit in a row. How many are to the left of the person sitting at the extreme right?',
+      options: ['4', '5', '6', '3'],
+      correctIndex: 1,
+    },
+    {
+      id: 2,
+      question: 'If A is to the immediate right of B, what is their relation?',
+      options: ['Adjacent', 'Opposite', 'Far', 'Unrelated'],
+      correctIndex: 0,
+    },
+    {
+      id: 3,
+      question: 'If C is between A and B, how many persons are between A and B?',
+      options: ['0', '1', '2', 'Cannot say'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Facing north, if P is to the right of Q, P is in which direction of Q?',
+      options: ['East', 'West', 'North', 'South'],
+      correctIndex: 0,
+    },
+    {
+      id: 5,
+      question: 'Facing south, if R is to the left of S, R is in which direction of S?',
+      options: ['East', 'West', 'North', 'South'],
+      correctIndex: 0,
+    },
+    {
+      id: 6,
+      question: 'Which clue should be applied first while solving arrangement?',
+      options: [
+        'Relative position',
+        'Absolute position',
+        'Optional clue',
+        'Guessing',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 7,
+      question: 'In circular arrangement, facing the center, right side means?',
+      options: ['Clockwise', 'Anticlockwise', 'Straight', 'Opposite'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'In a row of 7 people, who sits at the center?',
+      options: ['3rd', '4th', '5th', 'Cannot say'],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'Which method is best for multiple-attribute arrangement?',
+      options: ['Guessing', 'Grid method', 'Direct answer', 'Formula'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'If all conditions are satisfied, the arrangement is?',
+      options: ['Assumed', 'Correct', 'Partial', 'Incorrect'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'How many adjacent pairs are there in a row of 6 persons?',
+      options: ['4', '5', '6', '3'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'If A sits third from left, how many persons are to his left?',
+      options: ['1', '2', '3', '4'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Which arrangement requires facing direction rules?',
+      options: ['Linear', 'Circular', 'Vertical', 'All'],
+      correctIndex: 3,
+    },
+    {
+      id: 14,
+      question: 'In vertical arrangement, “above” means?',
+      options: ['Higher position', 'Lower position', 'Left', 'Right'],
+      correctIndex: 0,
+    },
+    {
+      id: 15,
+      question: 'What is the biggest mistake in arrangement questions?',
+      options: [
+        'Ignoring directions',
+        'Slow solving',
+        'Drawing diagrams',
+        'Checking options',
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: 16,
+      question: 'Arrangement questions become easy with?',
+      options: ['Guessing', 'Practice', 'Luck', 'Memory'],
+      correctIndex: 1,
+    },
+    {
+      id: 17,
+      question: 'Which term means next to each other?',
+      options: ['Between', 'Adjacent', 'Extreme', 'Opposite'],
+      correctIndex: 1,
+    },
+    {
+      id: 18,
+      question: 'Data arrangement questions are mainly?',
+      options: [
+        'Calculation-based',
+        'Logic-based',
+        'Formula-based',
+        'Memory-based',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 19,
+      question: 'Which arrangement has no fixed starting point?',
+      options: ['Linear', 'Vertical', 'Circular', 'Row'],
+      correctIndex: 2,
+    },
+    {
+      id: 20,
+      question: 'Final step before answering is to?',
+      options: [
+        'Guess',
+        'Re-check all conditions',
+        'Skip',
+        'Mark any option',
+      ],
+      correctIndex: 1,
+    },
+  ],
 }

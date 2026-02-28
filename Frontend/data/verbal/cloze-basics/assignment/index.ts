@@ -1,9 +1,25 @@
-export const placeholder = {
+export const clozeBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Fill blank: The company ___ its target last year.', options: ['achieved', 'achieving', 'achieve', 'achieves'], correctIndex: 0, explanation: 'Past tense needed; achieved is correct.' },
+    { id: 2, question: 'Fill blank: Neither the manager ___ the staff was informed.', options: ['nor', 'or', 'and', 'but'], correctIndex: 0, explanation: 'Neither is followed by nor.' },
+    { id: 3, question: 'Fill blank: The results were ___ than expected.', options: ['better', 'good', 'best', 'well'], correctIndex: 0, explanation: 'Comparative degree with than: better.' },
+    { id: 4, question: 'Fill blank: She insisted ___ paying the bill.', options: ['on', 'in', 'at', 'for'], correctIndex: 0, explanation: 'Insist is followed by on.' },
+    { id: 5, question: 'Fill blank: The data ___ been verified.', options: ['has', 'have', 'had', 'having'], correctIndex: 0, explanation: 'Data is uncountable; use singular has.' },
+    { id: 6, question: 'Fill blank: We look forward to ___ from you.', options: ['hearing', 'hear', 'heard', 'hears'], correctIndex: 0, explanation: 'Look forward to + gerund (hearing).' },
+    { id: 7, question: 'Fill blank: The report is ___ for release.', options: ['ready', 'already', 'yet', 'still'], correctIndex: 0, explanation: 'Ready fits meaning: prepared for release.' },
+    { id: 8, question: 'Fill blank: He is accustomed ___ working late.', options: ['to', 'with', 'at', 'for'], correctIndex: 0, explanation: 'Accustomed is followed by to.' },
+    { id: 9, question: 'Fill blank: ___ of the two options is suitable.', options: ['Neither', 'Either', 'None', 'Both'], correctIndex: 0, explanation: 'Two options; neither means not one of two.' },
+    { id: 10, question: 'Fill blank: The meeting will be held ___ Monday.', options: ['on', 'at', 'in', 'by'], correctIndex: 0, explanation: 'Days take on.' },
+    { id: 11, question: 'Fill blank: She is ___ to succeed.', options: ['likely', 'liking', 'like', 'liked'], correctIndex: 0, explanation: 'Likely to + verb fits the structure.' },
+    { id: 12, question: 'Fill blank: The policy was implemented ___ the board approved it.', options: ['after', 'before', 'while', 'during'], correctIndex: 0, explanation: 'Cause-effect: implemented after approval.' },
+    { id: 13, question: 'Fill blank: He has ___ experience in this field.', options: ['considerable', 'consider', 'considering', 'considered'], correctIndex: 0, explanation: 'Adjective needed: considerable experience.' },
+    { id: 14, question: 'Fill blank: The team worked ___ to meet the deadline.', options: ['hard', 'hardly', 'harder', 'hardest'], correctIndex: 0, explanation: 'Worked hard means with great effort.' },
+    { id: 15, question: 'Fill blank: There is no point ___ arguing.', options: ['in', 'on', 'at', 'for'], correctIndex: 0, explanation: 'No point in + gerund.' },
+    { id: 16, question: 'Fill blank: The new system is ___ to the old one.', options: ['superior', 'super', 'superiority', 'superiorly'], correctIndex: 0, explanation: 'Superior to is the correct phrase.' },
+    { id: 17, question: 'Fill blank: We were ___ by the news.', options: ['surprised', 'surprise', 'surprising', 'surprisingly'], correctIndex: 0, explanation: 'Past participle as adjective: surprised by.' },
+    { id: 18, question: 'Fill blank: The matter is ___ discussion.', options: ['under', 'in', 'on', 'at'], correctIndex: 0, explanation: 'Under discussion is the standard phrase.' },
+    { id: 19, question: 'Fill blank: She is the ___ of the two sisters.', options: ['elder', 'eldest', 'old', 'older'], correctIndex: 0, explanation: 'Of two, use elder (or older).' },
+    { id: 20, question: 'Fill blank: The project is ___ completion.', options: ['near', 'nearly', 'nearer', 'nearest'], correctIndex: 0, explanation: 'Near completion means almost complete.' },
+  ],
 }

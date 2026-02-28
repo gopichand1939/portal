@@ -1,9 +1,125 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const companyMcqClocksAssignment = {
+  title: 'Company MCQs – Clocks (Assignment – 20 MCQs)',
+  questions: [
+    {
+      id: 1,
+      question: 'At what time between 2 and 3 are hands coincident?',
+      options: ['2:10 10/11', '2:11', '2:12', '2:13'],
+      correctIndex: 0,
+    },
+    {
+      id: 2,
+      question: 'Angle between hands at 4:20?',
+      options: ['0°', '10°', '20°', '30°'],
+      correctIndex: 1,
+    },
+    {
+      id: 3,
+      question: 'How many times do hands form a right angle in 12 hours?',
+      options: ['11', '22', '24', '44'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'At what time between 7 and 8 are hands opposite?',
+      options: ['7:38 2/11', '7:40', '7:42', '7:45'],
+      correctIndex: 0,
+    },
+    {
+      id: 5,
+      question: 'Angle at 10:10 is?',
+      options: ['115°', '120°', '125°', '130°'],
+      correctIndex: 0,
+    },
+    {
+      id: 6,
+      question: 'Minute hand gains how many degrees over hour hand in 1 hour?',
+      options: ['330°', '360°', '30°', '0°'],
+      correctIndex: 0,
+    },
+    {
+      id: 7,
+      question: 'At 5:15, angle between hands is?',
+      options: ['60°', '67.5°', '75°', '90°'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'A clock gains 5 minutes per hour. It is?',
+      options: ['Slow', 'Fast', 'Correct', 'Stopped'],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'If a clock shows 3:10 but is 10 minutes fast, actual time is?',
+      options: ['2:50', '3:00', '3:10', '3:20'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Hands coincide how many times in 24 hours?',
+      options: ['22', '24', '44', '11'],
+      correctIndex: 0,
+    },
+    {
+      id: 11,
+      question: 'Angle at 6:30?',
+      options: ['0°', '15°', '30°', '45°'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Relative speed of hands is derived from?',
+      options: ['Addition', 'Subtraction', 'Multiplication', 'Division'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'At 8:00, smaller angle is?',
+      options: ['120°', '240°', '90°', '180°'],
+      correctIndex: 0,
+    },
+    {
+      id: 14,
+      question: 'Clock problems are frequently asked in?',
+      options: ['Verbal', 'Reasoning', 'DI', 'Coding'],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'At 12:00, angle between hands is?',
+      options: ['0°', '90°', '180°', '360°'],
+      correctIndex: 0,
+    },
+    {
+      id: 16,
+      question: 'Hands are straight (0° or 180°) how many times in 12 hours?',
+      options: ['11', '22', '24', '44'],
+      correctIndex: 1,
+    },
+    {
+      id: 17,
+      question: 'Angle formula depends on?',
+      options: ['Hours only', 'Minutes only', 'Both H and M', 'Seconds'],
+      correctIndex: 2,
+    },
+    {
+      id: 18,
+      question: 'If shown time is less than actual time, clock is?',
+      options: ['Fast', 'Correct', 'Slow', 'Stopped'],
+      correctIndex: 2,
+    },
+    {
+      id: 19,
+      question: 'Hands opposite every?',
+      options: ['60 min', '65 min', '65 5/11 min', '70 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 20,
+      question: 'Company clock MCQs mainly test?',
+      options: ['Guessing', 'Speed maths', 'Concept clarity', 'Memory'],
+      correctIndex: 2,
+    },
+  ],
 }

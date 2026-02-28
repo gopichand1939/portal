@@ -1,9 +1,25 @@
-export const placeholder = {
+export const voiceBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Passive of: She cooks food.', options: ['Food is cooked by her.', 'Food was cooked by her.', 'Food cook by her.', 'Food are cooked by her.'], correctIndex: 0, explanation: 'Present passive.' },
+    { id: 2, question: 'Active of: The game was won by us.', options: ['We won the game.', 'We win the game.', 'The game won us.', 'We was win the game.'], correctIndex: 0, explanation: 'Past active.' },
+    { id: 3, question: 'Passive of: They have completed the task.', options: ['The task has been completed by them.', 'The task have been completed.', 'The task is completed.', 'The task was completed.'], correctIndex: 0, explanation: 'Present perfect passive.' },
+    { id: 4, question: 'Active of: The window was broken by the child.', options: ['The child broke the window.', 'The child break the window.', 'The window broke the child.', 'The child was break the window.'], correctIndex: 0, explanation: 'Past active.' },
+    { id: 5, question: 'Passive of: He will send the email.', options: ['The email will be sent by him.', 'The email will send by him.', 'The email is sent by him.', 'The email was sent by him.'], correctIndex: 0, explanation: 'Future passive.' },
+    { id: 6, question: 'Active of: The cake is being baked by her.', options: ['She is baking the cake.', 'She was baking the cake.', 'The cake is baking her.', 'She bakes the cake.'], correctIndex: 0, explanation: 'Present continuous active.' },
+    { id: 7, question: 'Passive of: People speak English here.', options: ['English is spoken here.', 'English was spoken here.', 'English speak here.', 'English are spoken here.'], correctIndex: 0, explanation: 'General truth passive.' },
+    { id: 8, question: 'Active of: The car was being driven by him.', options: ['He was driving the car.', 'He is driving the car.', 'The car was driving him.', 'He drove the car.'], correctIndex: 0, explanation: 'Past continuous active.' },
+    { id: 9, question: 'Passive of: She had finished the work.', options: ['The work had been finished by her.', 'The work has been finished.', 'The work was finished.', 'The work had finished by her.'], correctIndex: 0, explanation: 'Past perfect passive.' },
+    { id: 10, question: 'Active of: The keys were lost.', options: ['Someone lost the keys.', 'Someone loses the keys.', 'The keys lost someone.', 'Someone was lose the keys.'], correctIndex: 0, explanation: 'Agent unknown.' },
+    { id: 11, question: 'Passive of: The teacher teaches the students.', options: ['The students are taught by the teacher.', 'The students were taught.', 'The students teach the teacher.', 'The students is taught.'], correctIndex: 0, explanation: 'Present passive.' },
+    { id: 12, question: 'Active of: The house has been sold.', options: ['Someone has sold the house.', 'Someone had sold the house.', 'The house has sold someone.', 'Someone sell the house.'], correctIndex: 0, explanation: 'Present perfect active.' },
+    { id: 13, question: 'Passive of: They are watching the match.', options: ['The match is being watched by them.', 'The match was watched.', 'The match is watched.', 'The match are watched.'], correctIndex: 0, explanation: 'Present continuous passive.' },
+    { id: 14, question: 'Active of: The letter will be delivered tomorrow.', options: ['Someone will deliver the letter tomorrow.', 'Someone delivers the letter.', 'The letter will deliver tomorrow.', 'Someone delivered the letter.'], correctIndex: 0, explanation: 'Future active.' },
+    { id: 15, question: 'Passive of: Someone broke the vase.', options: ['The vase was broken.', 'The vase is broken.', 'The vase broke.', 'The vase were broken.'], correctIndex: 0, explanation: 'Past passive, agent optional.' },
+    { id: 16, question: 'Active of: The problem was being discussed.', options: ['They were discussing the problem.', 'They are discussing the problem.', 'The problem was discussing.', 'They discuss the problem.'], correctIndex: 0, explanation: 'Past continuous active.' },
+    { id: 17, question: 'Passive of: We must do it.', options: ['It must be done.', 'It must done.', 'It must be do.', 'It must did.'], correctIndex: 0, explanation: 'Modal passive.' },
+    { id: 18, question: 'Active of: The rules were broken by them.', options: ['They broke the rules.', 'They break the rules.', 'The rules broke them.', 'They were break the rules.'], correctIndex: 0, explanation: 'Past active.' },
+    { id: 19, question: 'Passive of: She is making tea.', options: ['Tea is being made by her.', 'Tea was made by her.', 'Tea is made by her.', 'Tea are made by her.'], correctIndex: 0, explanation: 'Present continuous passive.' },
+    { id: 20, question: 'Active of: The bridge has been built.', options: ['They have built the bridge.', 'They had built the bridge.', 'The bridge has built.', 'They build the bridge.'], correctIndex: 0, explanation: 'Present perfect active.' },
+  ],
 }

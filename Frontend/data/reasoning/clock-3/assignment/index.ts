@@ -1,9 +1,130 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const clock3Assignment = {
+  title: 'Clocks – Part 3 (Assignment – 20 MCQs)',
+  questions: [
+    {
+      id: 1,
+      question: 'A clock gains 10 minutes every hour. How much will it gain in 12 hours?',
+      options: ['100 min', '110 min', '120 min', '130 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'A clock loses 5 minutes every hour. How much will it lose in 8 hours?',
+      options: ['30 min', '35 min', '40 min', '45 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 3,
+      question: 'If a clock gains 2 minutes every hour, how many minutes does it gain in 1 day?',
+      options: ['24', '36', '48', '60'],
+      correctIndex: 2,
+    },
+    {
+      id: 4,
+      question: 'A fast clock shows 4:20 PM when actual time is 4:00 PM. Gain is?',
+      options: ['10 min', '15 min', '20 min', '25 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'A clock is slow by 15 minutes. When it shows 6:00, actual time is?',
+      options: ['5:45', '6:15', '6:00', '5:50'],
+      correctIndex: 1,
+    },
+    {
+      id: 6,
+      question: 'If a clock gains 6 minutes in 60 minutes, actual time =?',
+      options: [
+        'Shown × 60/66',
+        'Shown × 66/60',
+        'Shown − 6',
+        'Shown + 6',
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: 7,
+      question: 'If a clock loses 4 minutes per hour, it loses how much in 5 hours?',
+      options: ['15', '18', '20', '25'],
+      correctIndex: 2,
+    },
+    {
+      id: 8,
+      question: 'A clock gains 3 minutes per hour. In how many hours will it gain 1 hour?',
+      options: ['15', '18', '20', '25'],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'A correct clock shows 10:00. A slow clock shows 9:45. Loss is?',
+      options: ['10 min', '15 min', '20 min', '25 min'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Gain/loss problems are best solved using?',
+      options: ['Speed', 'Average', 'Ratio', 'Probability'],
+      correctIndex: 2,
+    },
+    {
+      id: 11,
+      question: 'If a clock gains 5 minutes every hour, in 24 hours it gains?',
+      options: ['100 min', '110 min', '120 min', '130 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 12,
+      question: 'A clock loses 2 minutes every hour. Loss in 12 hours?',
+      options: ['12 min', '18 min', '24 min', '30 min'],
+      correctIndex: 2,
+    },
+    {
+      id: 13,
+      question: 'If shown time is more than actual time, clock is?',
+      options: ['Correct', 'Slow', 'Fast', 'Stopped'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'A clock is 10 minutes fast. Correct time is 8:30. Clock shows?',
+      options: ['8:20', '8:30', '8:40', '8:50'],
+      correctIndex: 2,
+    },
+    {
+      id: 15,
+      question: 'A clock loses 15 minutes in 5 hours. Loss per hour?',
+      options: ['2 min', '3 min', '4 min', '5 min'],
+      correctIndex: 1,
+    },
+    {
+      id: 16,
+      question: 'Two clocks differ by 10 minutes. One gains 5 min/hr, other loses 5 min/hr. Difference increases by?',
+      options: ['5 min/hr', '8 min/hr', '10 min/hr', '12 min/hr'],
+      correctIndex: 2,
+    },
+    {
+      id: 17,
+      question: 'Fast and slow clock problems belong to which chapter?',
+      options: ['Calendars', 'Clocks', 'Trains', 'Time & Work'],
+      correctIndex: 1,
+    },
+    {
+      id: 18,
+      question: 'Clock problems mainly test?',
+      options: ['Memory', 'Calculation', 'Ratio understanding', 'Guessing'],
+      correctIndex: 2,
+    },
+    {
+      id: 19,
+      question: 'If gain per hour increases, actual time becomes?',
+      options: ['More', 'Less', 'Same', 'Zero'],
+      correctIndex: 1,
+    },
+    {
+      id: 20,
+      question: 'Clock-3 is most useful for?',
+      options: ['Basic exams', 'Advanced aptitude', 'School maths', 'Geometry'],
+      correctIndex: 1,
+    },
+  ],
 }

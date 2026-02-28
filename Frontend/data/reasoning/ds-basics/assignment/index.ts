@@ -1,9 +1,150 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const dsBasicsAssignment = {
+  title: 'Deductions – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'What is the first rule of deductions?',
+      options: [
+        'Use common sense',
+        'Make assumptions',
+        'Follow given statements only',
+        'Use experience',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'Which conclusion should be accepted?',
+      options: [
+        'Emotionally correct',
+        'Logically follows from statement',
+        'Socially true',
+        'Morally correct',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 3,
+      question: 'Which word makes a statement strict?',
+      options: ['May', 'Can', 'All', 'Sometimes'],
+      correctIndex: 2,
+    },
+    {
+      id: 4,
+      question: 'Possibility conclusions are valid when?',
+      options: [
+        'They contradict statements',
+        'They are impossible',
+        'They do not violate statements',
+        'They are assumed',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'In either–or conclusions, which is true?',
+      options: [
+        'Both conclusions follow',
+        'Neither follows',
+        'Only one follows',
+        'Both are possible',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Which is a common mistake in deductions?',
+      options: [
+        'Using logic',
+        'Reading carefully',
+        'Assuming extra facts',
+        'Checking conclusions separately',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 7,
+      question: 'If a conclusion goes beyond the statement, it is?',
+      options: ['Valid', 'Certain', 'Invalid', 'Possible'],
+      correctIndex: 2,
+    },
+    {
+      id: 8,
+      question: 'Deductions questions mainly appear in?',
+      options: [
+        'Math only',
+        'Reasoning section',
+        'English grammar',
+        'General awareness',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'Which approach is best for deductions?',
+      options: [
+        'Fast guessing',
+        'Careful logical analysis',
+        'Using intuition',
+        'Skipping rules',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Deductions become easy with?',
+      options: ['Luck', 'Practice and rule clarity', 'Guessing', 'Speed'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which conclusion should be rejected immediately?',
+      options: [
+        'Possibility-based',
+        'Contradictory',
+        'Direct',
+        'Logical',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Words like “all” and “none” indicate?',
+      options: ['Flexibility', 'Strict meaning', 'Possibility', 'Assumption'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Which is NOT a deduction type?',
+      options: [
+        'Definite',
+        'Possibility',
+        'Either–or',
+        'Calculation',
+      ],
+      correctIndex: 3,
+    },
+    {
+      id: 14,
+      question: 'Which habit improves deduction accuracy?',
+      options: [
+        'Ignoring rules',
+        'Practicing regularly',
+        'Using assumptions',
+        'Rushing',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Final check before answering deductions?',
+      options: [
+        'Is it logical?',
+        'Is it emotional?',
+        'Is it realistic?',
+        'Is it common?',
+      ],
+      correctIndex: 0,
+    },
+  ],
 }

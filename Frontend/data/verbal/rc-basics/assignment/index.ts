@@ -1,9 +1,25 @@
-export const placeholder = {
+export const rcBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'What does skimming a passage help with?', options: ['Memorizing lines', 'Getting main idea quickly', 'Finding page number', 'Counting words'], correctIndex: 1, explanation: 'Skimming gives overall idea and tone.' },
+    { id: 2, question: 'A suitable title for a passage should be:', options: ['Too narrow', 'Too broad', 'Reflective of main idea', 'Unrelated'], correctIndex: 2, explanation: 'Title must capture main idea.' },
+    { id: 3, question: 'Inference differs from restatement because:', options: ['It repeats the line', 'It goes beyond literal words but is supported', 'It is never in passage', 'It is the longest sentence'], correctIndex: 1, explanation: 'Inference is implied, not quoted.' },
+    { id: 4, question: 'For "according to the passage" type questions you must:', options: ['Use general knowledge', 'Base answer only on passage', 'Ignore the passage', 'Guess'], correctIndex: 1, explanation: 'Answer must match passage content.' },
+    { id: 5, question: 'Negative questions ("all EXCEPT") ask you to:', options: ['Find what is not true or not in passage', 'Pick the first option', 'Ignore options', 'Summarize'], correctIndex: 0, explanation: 'Identify the option that does not hold.' },
+    { id: 6, question: 'Paragraph purpose questions test:', options: ['Spelling', 'Role of para in passage', 'Word count', 'Author name'], correctIndex: 1, explanation: 'Why that para is there.' },
+    { id: 7, question: 'Vocabulary-in-context means:', options: ['Meaning in dictionary only', 'Meaning as used in that sentence/passage', 'Opposite meaning', 'Same for all passages'], correctIndex: 1, explanation: 'Context determines meaning.' },
+    { id: 8, question: 'Tone can be identified from:', options: ['Only numbers', 'Word choice and attitude', 'Length of passage', 'Number of paras'], correctIndex: 1, explanation: 'Words and style show tone.' },
+    { id: 9, question: 'When author says "it is argued that" they are:', options: ['Always agreeing', 'Presenting a view (may or may not agree)', 'Only disagreeing', 'Ending the passage'], correctIndex: 1, explanation: 'Reporting a viewpoint.' },
+    { id: 10, question: 'Supporting evidence in RC is used to:', options: ['Decorate passage', 'Back the main or local claim', 'Fill space', 'Confuse reader'], correctIndex: 1, explanation: 'Evidence supports claims.' },
+    { id: 11, question: 'Best way to handle difficult vocabulary in RC?', options: ['Skip the passage', 'Infer from context', 'Assume negative meaning', 'Never answer that question'], correctIndex: 1, explanation: 'Context gives clues.' },
+    { id: 12, question: 'Conclusion of passage often:', options: ['Introduces new topic', 'Sums up or extends main idea', 'Repeats first line only', 'Has no link to main idea'], correctIndex: 1, explanation: 'Conclusion ties to main idea.' },
+    { id: 13, question: 'Fact vs opinion: fact is', options: ['What author believes only', 'Verifiable or stated as fact in passage', 'Always in first line', 'Same as inference'], correctIndex: 1, explanation: 'Fact can be checked or is stated.' },
+    { id: 14, question: '"The passage suggests that" means:', options: ['Exact quote needed', 'Reasonable inference from passage', 'Outside knowledge needed', 'No answer possible'], correctIndex: 1, explanation: 'Asks for implied idea.' },
+    { id: 15, question: 'Repeated words or ideas in passage often signal:', options: ['Mistake', 'Key theme or emphasis', 'Random choice', 'End of passage'], correctIndex: 1, explanation: 'Repetition stresses importance.' },
+    { id: 16, question: 'Contrast words (however, but) indicate:', options: ['Same idea continues', 'Shift or opposition', 'Conclusion', 'Introduction'], correctIndex: 1, explanation: 'Contrast or change in idea.' },
+    { id: 17, question: 'Example in passage usually:', options: ['Is the main idea', 'Illustrates a point', 'Is unrelated', 'Replaces main idea'], correctIndex: 1, explanation: 'Examples support a point.' },
+    { id: 18, question: 'Author’s attitude is best seen from:', options: ['Only the title', 'Choice of words and tone', 'Number of examples', 'Length of passage'], correctIndex: 1, explanation: 'Language shows attitude.' },
+    { id: 19, question: 'For "primary purpose" questions focus on:', options: ['One small detail', 'Why author wrote the passage', 'First word only', 'Last word only'], correctIndex: 1, explanation: 'Overall intent of passage.' },
+    { id: 20, question: 'Eliminating wrong options helps because:', options: ['It wastes time', 'It narrows down to best answer', 'It is not allowed', 'It changes passage'], correctIndex: 1, explanation: 'Process of elimination is efficient.' },
+  ],
 }

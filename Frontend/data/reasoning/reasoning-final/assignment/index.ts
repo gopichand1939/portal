@@ -1,9 +1,115 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const reasoningFinalAssignment = {
+  title: 'Reasoning – Final (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Which topic requires diagram most often?',
+      options: ['Coding', 'Directions', 'Ranking', 'Analogy'],
+      correctIndex: 1,
+    },
+    {
+      id: 2,
+      question: 'Which is the golden rule of reasoning?',
+      options: [
+        'Use common sense',
+        'Assume missing facts',
+        'Follow given information only',
+        'Use real-life logic',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 3,
+      question: 'Which reasoning topic often combines multiple concepts?',
+      options: ['Ranking', 'Puzzles', 'Coding', 'Directions'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Which factor matters most in reasoning exams?',
+      options: ['Speed only', 'Accuracy only', 'Accuracy with speed', 'Guessing'],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'If a conclusion contradicts the statement, it is?',
+      options: ['Accepted', 'Possible', 'Rejected', 'Assumed'],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Which topic uses relative positions?',
+      options: ['Ranking', 'Directions', 'Arrangement', 'All'],
+      correctIndex: 3,
+    },
+    {
+      id: 7,
+      question: 'Which reasoning section is most scoring?',
+      options: ['Easy topics', 'Practiced topics', 'Guess-based topics', 'None'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'Final check before submitting reasoning answers?',
+      options: [
+        'Guess remaining',
+        'Change all answers',
+        'Verify logic',
+        'Skip review',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'Reasoning mastery depends mainly on?',
+      options: ['Talent', 'Memory', 'Consistent practice', 'Speed'],
+      correctIndex: 2,
+    },
+    {
+      id: 10,
+      question: 'Reasoning Final module is best used for?',
+      options: [
+        'Learning new topics',
+        'Last-minute revision',
+        'Skipping practice',
+        'Guessing answers',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which habit reduces negative marking?',
+      options: ['Attempt all questions', 'Random guessing', 'Smart skipping', 'Rushing'],
+      correctIndex: 2,
+    },
+    {
+      id: 12,
+      question: 'Which topic is logic-heavy and time-consuming?',
+      options: ['Coding', 'Puzzles', 'Directions', 'Ranking'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Which reasoning topic is formula-based?',
+      options: ['Ranking', 'Directions', 'Clocks', 'All'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'Which improves reasoning confidence?',
+      options: ['Luck', 'Practice + revision', 'Guessing', 'Speed only'],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Final goal of reasoning preparation?',
+      options: [
+        'Attempt all questions',
+        'Score maximum with accuracy',
+        'Finish fastest',
+        'Guess correctly',
+      ],
+      correctIndex: 1,
+    },
+  ],
 }

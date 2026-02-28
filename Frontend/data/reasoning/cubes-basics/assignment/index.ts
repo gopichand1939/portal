@@ -1,9 +1,125 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const cubesBasicsAssignment = {
+  title: 'Cubes – Basics (Assignment – 20 MCQs)',
+  questions: [
+    {
+      id: 1,
+      question: 'How many faces does a cube have?',
+      options: ['4', '6', '8', '12'],
+      correctIndex: 1,
+    },
+    {
+      id: 2,
+      question: 'How many edges are there in a cube?',
+      options: ['8', '10', '12', '14'],
+      correctIndex: 2,
+    },
+    {
+      id: 3,
+      question: 'How many vertices does a cube have?',
+      options: ['6', '8', '10', '12'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'If a cube is cut into 3 equal parts on each edge, total cubes formed?',
+      options: ['9', '18', '27', '36'],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'Number of corner cubes in any cube is?',
+      options: ['4', '6', '8', '12'],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Corner cubes have how many faces painted?',
+      options: ['1', '2', '3', '0'],
+      correctIndex: 2,
+    },
+    {
+      id: 7,
+      question: 'A cube painted on all faces is cut into 2 parts per edge. How many small cubes have 3 faces painted?',
+      options: ['4', '6', '8', '12'],
+      correctIndex: 2,
+    },
+    {
+      id: 8,
+      question: 'Edge cubes have how many faces painted?',
+      options: ['1', '2', '3', '0'],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'Face-center cubes have how many painted faces?',
+      options: ['0', '1', '2', '3'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Inner cubes have how many painted faces?',
+      options: ['0', '1', '2', '3'],
+      correctIndex: 0,
+    },
+    {
+      id: 11,
+      question: 'How many faces meet at a vertex of a cube?',
+      options: ['2', '3', '4', '5'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Total number of small cubes formed when n cuts are made?',
+      options: ['n²', 'n³', '2n', '3n'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Cubes problems mainly test?',
+      options: ['Calculation', 'Memory', 'Visualization', 'Speed'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'How many faces does each small cube have?',
+      options: ['4', '5', '6', '8'],
+      correctIndex: 2,
+    },
+    {
+      id: 15,
+      question: 'If a cube is painted on all faces, inner cubes will have?',
+      options: ['3 faces painted', '2 faces painted', '1 face painted', 'No face painted'],
+      correctIndex: 3,
+    },
+    {
+      id: 16,
+      question: 'Total number of face-center cubes depends on?',
+      options: ['Edges', 'Vertices', 'Cuts', 'Volume'],
+      correctIndex: 2,
+    },
+    {
+      id: 17,
+      question: 'Number of corner cubes is always?',
+      options: ['4', '6', '8', '12'],
+      correctIndex: 2,
+    },
+    {
+      id: 18,
+      question: 'Cube problems belong to which section?',
+      options: ['Quantitative', 'Verbal', 'Reasoning', 'DI'],
+      correctIndex: 2,
+    },
+    {
+      id: 19,
+      question: 'Painting and cutting cubes is part of?',
+      options: ['Geometry', 'Algebra', 'Reasoning', 'Probability'],
+      correctIndex: 2,
+    },
+    {
+      id: 20,
+      question: 'Cubes basics build foundation for?',
+      options: ['Puzzles', 'Clocks', 'Calendars', 'Coding'],
+      correctIndex: 0,
+    },
+  ],
 }

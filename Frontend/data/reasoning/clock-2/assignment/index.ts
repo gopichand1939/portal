@@ -1,9 +1,125 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const clock2Assignment = {
+  title: 'Clocks – Part 2 (Assignment – 20 MCQs)',
+  questions: [
+    {
+      id: 1,
+      question: 'At what time between 5 and 6 are hands coincident?',
+      options: ['5:27 3/11', '5:25', '5:30', '5:35'],
+      correctIndex: 0,
+    },
+    {
+      id: 2,
+      question: 'At what time between 8 and 9 are hands opposite?',
+      options: ['8:43 7/11', '8:45', '8:40', '8:50'],
+      correctIndex: 0,
+    },
+    {
+      id: 3,
+      question: 'At 3:40, angle between hands is?',
+      options: ['130°', '140°', '150°', '160°'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'How many times are hands at right angle in 24 hours?',
+      options: ['44', '22', '48', '24'],
+      correctIndex: 0,
+    },
+    {
+      id: 5,
+      question: 'At what time between 10 and 11 do hands coincide?',
+      options: ['10:54 6/11', '10:50', '10:55', '10:58'],
+      correctIndex: 0,
+    },
+    {
+      id: 6,
+      question: 'Angle at 11:20?',
+      options: ['20°', '30°', '40°', '50°'],
+      correctIndex: 0,
+    },
+    {
+      id: 7,
+      question: 'Hands are opposite every ___ minutes.',
+      options: ['60', '65', '65 5/11', '70'],
+      correctIndex: 2,
+    },
+    {
+      id: 8,
+      question: 'Angle at 4:45?',
+      options: ['7.5°', '15°', '22.5°', '30°'],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'At what time between 1 and 2 are hands at 90°?',
+      options: ['1:21 9/11', '1:25', '1:30', '1:35'],
+      correctIndex: 0,
+    },
+    {
+      id: 10,
+      question: 'At 2:50, angle between hands is?',
+      options: ['145°', '150°', '155°', '160°'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Minute hand gains 90° over hour hand in?',
+      options: ['16 4/11 min', '15 min', '18 min', '20 min'],
+      correctIndex: 0,
+    },
+    {
+      id: 12,
+      question: 'Angle at 12:40?',
+      options: ['140°', '160°', '200°', '220°'],
+      correctIndex: 0,
+    },
+    {
+      id: 13,
+      question: 'Hands coincide how many times in 24 hours?',
+      options: ['22', '24', '44', '12'],
+      correctIndex: 0,
+    },
+    {
+      id: 14,
+      question: 'At what time between 9 and 10 are hands opposite?',
+      options: ['9:49 1/11', '9:50', '9:45', '9:55'],
+      correctIndex: 0,
+    },
+    {
+      id: 15,
+      question: 'Angle at 6:10?',
+      options: ['115°', '120°', '125°', '130°'],
+      correctIndex: 0,
+    },
+    {
+      id: 16,
+      question: 'Hands are straight (0° or 180°) how many times in 12 hours?',
+      options: ['22', '11', '24', '12'],
+      correctIndex: 0,
+    },
+    {
+      id: 17,
+      question: 'At 1:45, angle between hands?',
+      options: ['142.5°', '147.5°', '150°', '135°'],
+      correctIndex: 0,
+    },
+    {
+      id: 18,
+      question: 'At what time between 6 and 7 are hands at right angle?',
+      options: ['6:21 9/11', '6:25', '6:30', '6:35'],
+      correctIndex: 0,
+    },
+    {
+      id: 19,
+      question: 'Angle at 8:50?',
+      options: ['155°', '160°', '165°', '170°'],
+      correctIndex: 1,
+    },
+    {
+      id: 20,
+      question: 'Clock problems mainly depend on?',
+      options: ['Memory', 'Formulas', 'Relative speed', 'Guessing'],
+      correctIndex: 2,
+    },
+  ],
 }

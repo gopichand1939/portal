@@ -1,9 +1,25 @@
-export const placeholder = {
+export const errorBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Error: "A lot of (A) / water have (B) / been wasted. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Water is uncountable; use "has".' },
+    { id: 2, question: 'Error: "She is (A) / more better (B) / than him. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Double comparative; use "better".' },
+    { id: 3, question: 'Error: "The committee (A) / are (B) / divided. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Committee as unit takes "is".' },
+    { id: 4, question: 'Error: "Between you and (A) / I, (B) / he is wrong. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Object of "between": "me".' },
+    { id: 5, question: 'Error: "She is (A) / one of the girls (B) / who is tall. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 2, explanation: '"Who" refers to girls; use "are".' },
+    { id: 6, question: 'Error: "He said (A) / he will (B) / come yesterday. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Reported speech: "would come".' },
+    { id: 7, question: 'Error: "Neither (A) / of the two (B) / are correct. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 2, explanation: 'Neither of + plural: singular verb "is".' },
+    { id: 8, question: 'Error: "She prefers (A) / tea than (B) / coffee. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Prefer takes "to": tea to coffee.' },
+    { id: 9, question: 'Error: "The news (A) / are (B) / good. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'News is singular; "is".' },
+    { id: 10, question: 'Error: "Ten thousand rupees (A) / are (B) / a big amount. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Sum as unit: "is".' },
+    { id: 11, question: 'Error: "She is (A) / different than (B) / her sister. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Different from (standard).' },
+    { id: 12, question: 'Error: "Each of the (A) / participants have (B) / received a certificate. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Each of: singular "has".' },
+    { id: 13, question: 'Error: "The principal (A) / and teacher (B) / are present. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 2, explanation: 'If same person: "is".' },
+    { id: 14, question: 'Error: "I have (A) / less (B) / books than you. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Countable: "fewer books".' },
+    { id: 15, question: 'Error: "She asked (A) / me that (B) / I was ready. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Ask + if/whether; not "that".' },
+    { id: 16, question: 'Error: "The quality of (A) / apples are (B) / good. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Subject is "quality"; "is".' },
+    { id: 17, question: 'Error: "He is (A) / the most (B) / tallest boy. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 1, explanation: 'Double superlative; use "the tallest".' },
+    { id: 18, question: 'Error: "Scarcely had (A) / she left (B) / when he arrived. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 3, explanation: 'No error; structure is correct.' },
+    { id: 19, question: 'Error: "Neither (A) / he nor I (B) / are to blame. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 2, explanation: 'Closest to verb is "I"; "am to blame".' },
+    { id: 20, question: 'Error: "It is (A) / I who (B) / is responsible. (C) / No error (D)"', options: ['A', 'B', 'C', 'D'], correctIndex: 2, explanation: '"Who" refers to I; "am responsible".' },
+  ],
 }

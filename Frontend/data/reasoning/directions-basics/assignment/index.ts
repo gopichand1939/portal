@@ -1,9 +1,100 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const directionsBasicsAssignment = {
+  title: 'Directions – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'A person facing North turns right, then right again. Which direction is he facing now?',
+      options: ['North', 'South', 'East', 'West'],
+      correctIndex: 1,
+    },
+    {
+      id: 2,
+      question: 'Facing East, a person turns left. Which direction now?',
+      options: ['North', 'South', 'East', 'West'],
+      correctIndex: 0,
+    },
+    {
+      id: 3,
+      question: 'Which direction is to the left of South?',
+      options: ['East', 'West', 'North', 'South'],
+      correctIndex: 0,
+    },
+    {
+      id: 4,
+      question: 'Which direction is diagonally opposite to North-East?',
+      options: ['North-West', 'South-East', 'South-West', 'East'],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'Turning left from West gives?',
+      options: ['South', 'North', 'East', 'West'],
+      correctIndex: 0,
+    },
+    {
+      id: 6,
+      question: 'Facing South, a person turns right. Direction?',
+      options: ['West', 'East', 'North', 'South'],
+      correctIndex: 0,
+    },
+    {
+      id: 7,
+      question: 'Which turn is equal to 180°?',
+      options: ['Half turn', 'Quarter turn', 'Full turn', 'Right turn'],
+      correctIndex: 0,
+    },
+    {
+      id: 8,
+      question: 'Direction sense questions are best solved using?',
+      options: ['Formulas', 'Diagrams', 'Guessing', 'Memory'],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'Facing North, moving backward means moving towards?',
+      options: ['East', 'West', 'South', 'North'],
+      correctIndex: 2,
+    },
+    {
+      id: 10,
+      question: 'Main error in direction problems is?',
+      options: [
+        'Ignoring turns',
+        'Drawing diagrams',
+        'Practicing',
+        'Checking answers',
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: 11,
+      question: 'How many degrees is a full turn?',
+      options: ['90°', '180°', '270°', '360°'],
+      correctIndex: 3,
+    },
+    {
+      id: 12,
+      question: 'Facing East, which direction is opposite?',
+      options: ['North', 'South', 'West', 'East'],
+      correctIndex: 2,
+    },
+    {
+      id: 13,
+      question: 'North-West lies between?',
+      options: ['North & East', 'South & West', 'North & West', 'East & South'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'Facing West, a right turn leads to?',
+      options: ['North', 'South', 'East', 'West'],
+      correctIndex: 0,
+    },
+    {
+      id: 15,
+      question: 'Direction sense problems mainly test?',
+      options: ['Calculation', 'Logic & visualization', 'Memory', 'Theory'],
+      correctIndex: 1,
+    },
+  ],
 }

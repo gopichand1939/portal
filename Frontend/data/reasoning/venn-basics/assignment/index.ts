@@ -1,9 +1,155 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const vennBasicsAssignment = {
+  title: 'Venn Diagrams – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Which diagram is best for showing common elements?',
+      options: ['Table', 'Flowchart', 'Venn diagram', 'Tree'],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'Intersection in Venn diagram means?',
+      options: [
+        'Total elements',
+        'Exclusive elements',
+        'Common elements',
+        'Outside elements',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 3,
+      question: 'If two sets have nothing common, they are shown as?',
+      options: [
+        'Overlapping circles',
+        'Separate circles',
+        'One inside another',
+        'Crossed circles',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Which topic often combines with Venn diagrams?',
+      options: ['Ranking', 'Syllogisms', 'Directions', 'Coding'],
+      correctIndex: 1,
+    },
+    {
+      id: 5,
+      question: 'Best first step in solving Venn questions?',
+      options: [
+        'Guess answer',
+        'Draw diagram',
+        'Read options',
+        'Skip question',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 6,
+      question: 'Three-set Venn diagrams require?',
+      options: [
+        'Speed',
+        'Careful placement',
+        'Guessing',
+        'Memory',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 7,
+      question: 'Which shows all elements of all sets?',
+      options: ['Intersection', 'Union', 'Exclusive', 'Difference'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'Which should NOT be used while solving?',
+      options: [
+        'Logic',
+        'Given information',
+        'Assumptions',
+        'Diagrams',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'Venn diagram questions are usually?',
+      options: [
+        'Time-consuming',
+        'Logic-based',
+        'Calculation-heavy',
+        'Guess-based',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Venn diagrams become easy with?',
+      options: [
+        'Luck',
+        'Practice',
+        'Guessing',
+        'Speed only',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which area shows elements common to all three sets?',
+      options: [
+        'Side overlap',
+        'Center overlap',
+        'Outside region',
+        'Exclusive part',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Which is an exclusive element?',
+      options: [
+        'Common to all',
+        'Belongs to one set only',
+        'Belongs to two sets',
+        'Outside all sets',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'Venn diagrams are most useful for?',
+      options: [
+        'Comparison',
+        'Classification',
+        'Calculation',
+        'Memorization',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 14,
+      question: 'Final check before answering Venn questions?',
+      options: [
+        'Guess',
+        'Verify placements',
+        'Change diagram',
+        'Skip',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Venn diagram mastery depends mainly on?',
+      options: [
+        'Speed',
+        'Practice and clarity',
+        'Luck',
+        'Memory',
+      ],
+      correctIndex: 1,
+    },
+  ],
 }

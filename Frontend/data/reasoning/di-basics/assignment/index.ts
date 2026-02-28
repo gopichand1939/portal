@@ -1,9 +1,105 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const diBasicsAssignment = {
+  title: 'Data Interpretation – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Which chart is best for showing percentages?',
+      options: ['Bar graph', 'Line graph', 'Pie chart', 'Table'],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'Data Interpretation mainly depends on?',
+      options: ['Memory', 'Calculation accuracy', 'Guessing', 'Theory'],
+      correctIndex: 1,
+    },
+    {
+      id: 3,
+      question: 'What does a bar graph mainly help with?',
+      options: ['Trend', 'Comparison', 'Prediction', 'Logic'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Which value represents the whole in a pie chart?',
+      options: ['100%', '180°', '270°', '90°'],
+      correctIndex: 0,
+    },
+    {
+      id: 5,
+      question: 'Which DI type is best to show change over time?',
+      options: ['Table', 'Pie chart', 'Line graph', 'Bar graph'],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Before solving DI questions, you should?',
+      options: [
+        'Start calculating',
+        'Read the questions',
+        'Guess values',
+        'Skip data',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 7,
+      question: 'Which calculation is most frequently used in DI?',
+      options: ['Logs', 'Percentages', 'Trigonometry', 'Algebra'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'Which mistake should be avoided in DI?',
+      options: [
+        'Double checking',
+        'Careful reading',
+        'Calculation errors',
+        'Practicing',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'DI questions are generally?',
+      options: ['Time-saving', 'Time-consuming', 'Guess-based', 'Theory-heavy'],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'DI becomes easy with?',
+      options: ['Luck', 'Practice', 'Guessing', 'Skipping'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which topic strengthens DI performance?',
+      options: ['Geometry', 'Percentages & Averages', 'Clocks', 'Coding'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'Main challenge in DI is?',
+      options: ['Understanding English', 'Accuracy', 'Theory', 'Memory'],
+      correctIndex: 1,
+    },
+    {
+      id: 13,
+      question: 'DI questions are common in?',
+      options: ['Only school exams', 'Only banking', 'Most competitive exams', 'None'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'Which axis usually shows time in a line graph?',
+      options: ['Y-axis', 'Z-axis', 'X-axis', 'No axis'],
+      correctIndex: 2,
+    },
+    {
+      id: 15,
+      question: 'What should be done after solving DI?',
+      options: ['Submit immediately', 'Re-check calculations', 'Change answers', 'Guess again'],
+      correctIndex: 1,
+    },
+  ],
 }

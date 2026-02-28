@@ -1,9 +1,25 @@
-export const placeholder = {
+export const verbalCompanyMcqAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Error: One of the boys are missing.', options: ['One of', 'the boys', 'are missing', 'No error'], correctIndex: 2, explanation: 'One of + plural takes singular verb: is.' },
+    { id: 2, question: 'Synonym of OBSTINATE:', options: ['Flexible', 'Stubborn', 'Kind', 'Weak'], correctIndex: 1, explanation: 'Obstinate means stubborn.' },
+    { id: 3, question: 'Fill: He is ___ to blame.', options: ['likely', 'liking', 'like', 'liked'], correctIndex: 0, explanation: 'Likely to + verb is correct.' },
+    { id: 4, question: 'Correct sentence:', options: ['The committee have decided.', 'The committee has decided.', 'The committee were decided.', 'The committee having decided.'], correctIndex: 1, explanation: 'Committee as a unit takes singular verb.' },
+    { id: 5, question: 'Meaning of FRUGAL:', options: ['Wasteful', 'Economical', 'Rich', 'Generous'], correctIndex: 1, explanation: 'Frugal means economical.' },
+    { id: 6, question: 'Passive: They will complete the work.', options: ['The work will be completed by them.', 'The work will completed by them.', 'The work would be completed by them.', 'The work is completed by them.'], correctIndex: 0, explanation: 'Future: will be + past participle.' },
+    { id: 7, question: 'Indirect: He said, I can swim.', options: ['He said that he could swim.', 'He said that he can swim.', 'He said he can swam.', 'He said I could swim.'], correctIndex: 0, explanation: 'Can becomes could in reported speech.' },
+    { id: 8, question: 'Fill: She insisted ___ coming.', options: ['on', 'in', 'at', 'for'], correctIndex: 0, explanation: 'Insist on + gerund.' },
+    { id: 9, question: 'Error: Neither the manager nor the staff were present.', options: ['Neither', 'nor', 'were present', 'No error'], correctIndex: 2, explanation: 'With neither-nor, verb agrees with nearest subject: staff (singular or plural). Were can be correct if staff is plural.' },
+    { id: 10, question: 'Synonym of VAGUE:', options: ['Clear', 'Unclear', 'Exact', 'Sure'], correctIndex: 1, explanation: 'Vague means unclear.' },
+    { id: 11, question: 'Fill: The report is ___ for release.', options: ['ready', 'already', 'yet', 'still'], correctIndex: 0, explanation: 'Ready for release means prepared.' },
+    { id: 12, question: 'Correct: Me and him went there.', options: ['He and I went there.', 'Me and him went there.', 'Him and me went there.', 'No change'], correctIndex: 0, explanation: 'Subject form: He and I.' },
+    { id: 13, question: 'Meaning of DILIGENT:', options: ['Lazy', 'Hard-working', 'Careless', 'Slow'], correctIndex: 1, explanation: 'Diligent means hard-working.' },
+    { id: 14, question: 'Passive: Someone has stolen the keys.', options: ['The keys have been stolen.', 'The keys has been stolen.', 'The keys had been stolen.', 'The keys are stolen.'], correctIndex: 0, explanation: 'Present perfect passive: have been + past participle.' },
+    { id: 15, question: 'Indirect: She said, I may leave. Options:', options: ['She said that she might leave.', 'She said that she may leave.', 'She said she might left.', 'She said I might leave.'], correctIndex: 0, explanation: 'May becomes might.' },
+    { id: 16, question: 'Fill: We look forward to ___ you.', options: ['meeting', 'meet', 'met', 'meets'], correctIndex: 0, explanation: 'Look forward to + gerund.' },
+    { id: 17, question: 'Error: The data are incorrect.', options: ['The', 'data', 'are', 'No error'], correctIndex: 2, explanation: 'Data is often treated as singular: is.' },
+    { id: 18, question: 'Synonym of CONCEAL:', options: ['Reveal', 'Hide', 'Show', 'Display'], correctIndex: 1, explanation: 'Conceal means hide.' },
+    { id: 19, question: 'Correct: Less people came.', options: ['Fewer people came.', 'Less people came.', 'Few people came.', 'No change'], correctIndex: 0, explanation: 'Fewer for countable nouns.' },
+    { id: 20, question: 'Meaning of RELUCTANT:', options: ['Eager', 'Unwilling', 'Happy', 'Quick'], correctIndex: 1, explanation: 'Reluctant means unwilling.' },
+  ],
 }

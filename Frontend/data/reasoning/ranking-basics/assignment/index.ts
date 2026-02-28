@@ -1,9 +1,120 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const rankingBasicsAssignment = {
+  title: 'Ranking – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'If P is 7th from top and 4th from bottom, total persons are?',
+      options: ['9', '10', '11', '12'],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'If total persons are 15, position of middle person is?',
+      options: ['7th', '8th', '9th', 'None'],
+      correctIndex: 1,
+    },
+    {
+      id: 3,
+      question: 'If Q is 2nd from left in a row of 8, what is his rank from right?',
+      options: ['5th', '6th', '7th', '8th'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Which ranking question requires table method?',
+      options: [
+        'Single person',
+        'Two persons',
+        'Multiple comparisons',
+        'Direct formula',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 5,
+      question: 'If ranks from both ends are given, total is found by?',
+      options: [
+        'Adding ranks',
+        'Multiplying ranks',
+        'Adding and subtracting 1',
+        'Subtracting ranks',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'If total persons are even, middle position is?',
+      options: [
+        'Single',
+        'Two middles',
+        'Not defined',
+        'Always first',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 7,
+      question: 'Ranking problems are closely related to?',
+      options: ['Puzzles', 'Directions', 'Coding', 'Clocks'],
+      correctIndex: 0,
+    },
+    {
+      id: 8,
+      question: 'Which word indicates ranking?',
+      options: ['Between', 'Older', 'Facing', 'Clockwise'],
+      correctIndex: 1,
+    },
+    {
+      id: 9,
+      question: 'Best way to avoid mistakes in ranking?',
+      options: [
+        'Guess quickly',
+        'Use clear counting',
+        'Skip formula',
+        'Ignore direction',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Ranking questions mainly test?',
+      options: ['Calculation', 'Memory', 'Logical order', 'Speed only'],
+      correctIndex: 2,
+    },
+    {
+      id: 11,
+      question: 'If A is taller than B and B taller than C, who is tallest?',
+      options: ['A', 'B', 'C', 'Cannot say'],
+      correctIndex: 0,
+    },
+    {
+      id: 12,
+      question: 'If D is younger than E but older than F, who is youngest?',
+      options: ['D', 'E', 'F', 'Cannot say'],
+      correctIndex: 2,
+    },
+    {
+      id: 13,
+      question: 'Which topic often combines with ranking?',
+      options: ['Arrangement', 'Probability', 'Clocks', 'DI'],
+      correctIndex: 0,
+    },
+    {
+      id: 14,
+      question: 'Final step before answering ranking questions?',
+      options: [
+        'Guess',
+        'Recheck counting',
+        'Skip',
+        'Change method',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Ranking problems become easy with?',
+      options: ['Luck', 'Practice', 'Speed', 'Guessing'],
+      correctIndex: 1,
+    },
+  ],
 }

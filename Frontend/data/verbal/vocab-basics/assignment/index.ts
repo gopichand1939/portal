@@ -1,9 +1,25 @@
-export const placeholder = {
+export const vocabBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Meaning of AMBIGUOUS:', options: ['Clear', 'Unclear or two meanings', 'Simple', 'Direct'], correctIndex: 1, explanation: 'Ambiguous means unclear or open to more than one interpretation.' },
+    { id: 2, question: 'Meaning of DILIGENT:', options: ['Lazy', 'Hard-working', 'Careless', 'Slow'], correctIndex: 1, explanation: 'Diligent means showing care and effort.' },
+    { id: 3, question: 'Meaning of FRUGAL:', options: ['Wasteful', 'Economical', 'Rich', 'Generous'], correctIndex: 1, explanation: 'Frugal means economical with money.' },
+    { id: 4, question: 'Meaning of HOSTILE:', options: ['Friendly', 'Unfriendly', 'Neutral', 'Calm'], correctIndex: 1, explanation: 'Hostile means unfriendly or opposed.' },
+    { id: 5, question: 'Meaning of INNOCENT:', options: ['Guilty', 'Not guilty', 'Criminal', 'Suspicious'], correctIndex: 1, explanation: 'Innocent means not guilty.' },
+    { id: 6, question: 'Meaning of LEGIBLE:', options: ['Illegible', 'Readable', 'Written', 'Printed'], correctIndex: 1, explanation: 'Legible means clear enough to read.' },
+    { id: 7, question: 'Meaning of OBLIGATORY:', options: ['Optional', 'Required', 'Free', 'Extra'], correctIndex: 1, explanation: 'Obligatory means required.' },
+    { id: 8, question: 'Meaning of PRECISE:', options: ['Vague', 'Exact', 'Rough', 'Approximate'], correctIndex: 1, explanation: 'Precise means exact and accurate.' },
+    { id: 9, question: 'Meaning of RELATIVE:', options: ['Absolute', 'In relation to something else', 'Fixed', 'Same'], correctIndex: 1, explanation: 'Relative means in relation to something else.' },
+    { id: 10, question: 'Meaning of SUPERFICIAL:', options: ['Deep', 'On the surface only', 'Serious', 'Important'], correctIndex: 1, explanation: 'Superficial means on the surface.' },
+    { id: 11, question: 'Meaning of TRANSPARENT:', options: ['Opaque', 'Clear, see-through', 'Dark', 'Thick'], correctIndex: 1, explanation: 'Transparent means clear or see-through.' },
+    { id: 12, question: 'Meaning of UNANIMOUS:', options: ['Divided', 'Fully in agreement', 'Partial', 'Mixed'], correctIndex: 1, explanation: 'Unanimous means fully in agreement.' },
+    { id: 13, question: 'Meaning of VERSATILE:', options: ['Limited', 'Able to do many things', 'Fixed', 'Single'], correctIndex: 1, explanation: 'Versatile means able to adapt.' },
+    { id: 14, question: 'Meaning of WARY:', options: ['Careless', 'Cautious', 'Bold', 'Rash'], correctIndex: 1, explanation: 'Wary means cautious.' },
+    { id: 15, question: 'Meaning of ZEALOUS:', options: ['Apathetic', 'Enthusiastic', 'Cold', 'Slow'], correctIndex: 1, explanation: 'Zealous means enthusiastic.' },
+    { id: 16, question: 'Meaning of ABUNDANT:', options: ['Scarce', 'Plentiful', 'Few', 'Rare'], correctIndex: 1, explanation: 'Abundant means plentiful.' },
+    { id: 17, question: 'Meaning of CANDID:', options: ['Secretive', 'Frank and honest', 'Dishonest', 'Hidden'], correctIndex: 1, explanation: 'Candid means frank and honest.' },
+    { id: 18, question: 'Meaning of ECCENTRIC:', options: ['Normal', 'Unconventional', 'Ordinary', 'Typical'], correctIndex: 1, explanation: 'Eccentric means unconventional.' },
+    { id: 19, question: 'Meaning of GRACIOUS:', options: ['Rude', 'Courteous and kind', 'Harsh', 'Cold'], correctIndex: 1, explanation: 'Gracious means courteous and kind.' },
+    { id: 20, question: 'Meaning of HYPOTHETICAL:', options: ['Real', 'Based on theory; not necessarily real', 'Proven', 'Actual'], correctIndex: 1, explanation: 'Hypothetical means based on theory.' },
+  ],
 }

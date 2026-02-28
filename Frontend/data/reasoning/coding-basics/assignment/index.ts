@@ -1,9 +1,130 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const codingBasicsAssignment = {
+  title: 'Coding – Basics (Assignment – 20 MCQs)',
+  questions: [
+    {
+      id: 1,
+      question: 'If APPLE is coded as BQQMF, then BALL is coded as?',
+      options: ['CBMM', 'CBMMF', 'CMMB', 'CBLL'],
+      correctIndex: 0,
+    },
+    {
+      id: 2,
+      question: 'If A = 1, B = 2, then value of CAT is?',
+      options: ['24', '26', '27', '29'],
+      correctIndex: 2,
+    },
+    {
+      id: 3,
+      question: 'If MON is coded as NPO, then TUE is coded as?',
+      options: ['UVF', 'UWF', 'VWF', 'TVF'],
+      correctIndex: 1,
+    },
+    {
+      id: 4,
+      question: 'Which letter is opposite of D in reverse alphabet?',
+      options: ['W', 'X', 'Y', 'Z'],
+      correctIndex: 1,
+    },
+    {
+      id: 5,
+      question: 'If KING is coded as LJOH, logic used is?',
+      options: [
+        'Each letter +1',
+        'Each letter −1',
+        'Reverse word',
+        'Alternate shift',
+      ],
+      correctIndex: 0,
+    },
+    {
+      id: 6,
+      question: 'Alphabet position of S is?',
+      options: ['18', '19', '20', '21'],
+      correctIndex: 1,
+    },
+    {
+      id: 7,
+      question: 'If 5 = E, 10 = J, then 15 =?',
+      options: ['L', 'M', 'N', 'O'],
+      correctIndex: 1,
+    },
+    {
+      id: 8,
+      question: 'If NO is coded as ML, then YES is coded as?',
+      options: ['XDR', 'XDR', 'XFR', 'XCR'],
+      correctIndex: 3,
+    },
+    {
+      id: 9,
+      question: 'Reverse alphabet of A is?',
+      options: ['X', 'Y', 'Z', 'W'],
+      correctIndex: 2,
+    },
+    {
+      id: 10,
+      question: 'If PAPER is coded as QBQFS, PAPER follows which pattern?',
+      options: ['+1 shift', '−1 shift', 'Reverse', 'Random'],
+      correctIndex: 0,
+    },
+    {
+      id: 11,
+      question: 'Which letter has position 14?',
+      options: ['M', 'N', 'O', 'P'],
+      correctIndex: 1,
+    },
+    {
+      id: 12,
+      question: 'If A → Z, B → Y, then C →?',
+      options: ['X', 'W', 'V', 'U'],
+      correctIndex: 0,
+    },
+    {
+      id: 13,
+      question: 'Coding–decoding questions are mostly?',
+      options: ['Calculation based', 'Logic based', 'Memory based', 'Speed based'],
+      correctIndex: 1,
+    },
+    {
+      id: 14,
+      question: 'If FROG is coded as GSPH, then logic is?',
+      options: ['Each letter +1', 'Reverse', 'Alternate', 'Random'],
+      correctIndex: 0,
+    },
+    {
+      id: 15,
+      question: 'Alphabet position sum of A + B + C equals?',
+      options: ['5', '6', '7', '8'],
+      correctIndex: 1,
+    },
+    {
+      id: 16,
+      question: 'If SKY is coded as TLZ, SKY →?',
+      options: ['+1 shift', '−1 shift', 'Reverse', 'Mirror'],
+      correctIndex: 0,
+    },
+    {
+      id: 17,
+      question: 'Which coding uses alphabet numbering?',
+      options: ['Numeric coding', 'Reverse coding', 'Symbol coding', 'Random coding'],
+      correctIndex: 0,
+    },
+    {
+      id: 18,
+      question: 'If LION is coded as MJPO, then BEAR is coded as?',
+      options: ['CFBS', 'CFBQ', 'CFBR', 'DFBS'],
+      correctIndex: 0,
+    },
+    {
+      id: 19,
+      question: 'Coding–decoding is a part of?',
+      options: ['Quantitative aptitude', 'Reasoning', 'Verbal ability', 'Data interpretation'],
+      correctIndex: 1,
+    },
+    {
+      id: 20,
+      question: 'Coding basics help build foundation for?',
+      options: ['Puzzles', 'Blood relations', 'Direction sense', 'All'],
+      correctIndex: 3,
+    },
+  ],
 }

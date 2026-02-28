@@ -1,9 +1,25 @@
-export const placeholder = {
+export const paraBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Which can be an opening sentence?', options: ['So we see that...', 'Therefore...', 'There are many reasons for this.', 'In conclusion...'], correctIndex: 2, explanation: 'General intro.' },
+    { id: 2, question: '"Moreover" suggests:', options: ['Contrast', 'Additional point', 'Conclusion', 'Start of topic'], correctIndex: 1, explanation: 'Adds information.' },
+    { id: 3, question: 'Sentence with "For example" usually:', options: ['Starts para', 'Follows a claim', 'Ends para', 'Stands alone'], correctIndex: 1, explanation: 'Example supports a statement.' },
+    { id: 4, question: 'Best way to find sequence:', options: ['Guess', 'Look for pronouns and connectors', 'Pick longest first', 'Alphabetical'], correctIndex: 1, explanation: 'Clues in text.' },
+    { id: 5, question: 'Conclusion sentence often has:', options: ['Question only', 'Summary or final thought', 'New topic', 'No link to rest'], correctIndex: 1, explanation: 'Wraps up idea.' },
+    { id: 6, question: '"First" and "Second" indicate:', options: ['Random order', 'Numbered sequence', 'Conclusion', 'Contrast'], correctIndex: 1, explanation: 'Order of points.' },
+    { id: 7, question: 'If A mentions "this idea", then:', options: ['A must be first', 'Some sentence before A has the idea', 'A must be last', 'No link'], correctIndex: 1, explanation: 'Reference to prior content.' },
+    { id: 8, question: 'Chronological jumble: order by:', options: ['Length', 'Time', 'Alphabet', 'Difficulty'], correctIndex: 1, explanation: 'Time order.' },
+    { id: 9, question: '"In other words" suggests:', options: ['New topic', 'Rephrasing or clarification', 'Conclusion', 'Contrast'], correctIndex: 1, explanation: 'Restatement.' },
+    { id: 10, question: 'Opening often:', options: ['Uses "thus"', 'Introduces theme or context', 'Uses "hence"', 'Is the shortest'], correctIndex: 1, explanation: 'Sets context.' },
+    { id: 11, question: 'Sentence starting with "But" typically:', options: ['Starts the para', 'Follows a contrasting idea', 'Ends the para', 'Stands alone'], correctIndex: 1, explanation: 'Contrast with previous.' },
+    { id: 12, question: 'To eliminate wrong order, check:', options: ['Only first sentence', 'Whether each sentence can follow the previous', 'Only last sentence', 'Word count'], correctIndex: 1, explanation: 'Flow between sentences.' },
+    { id: 13, question: '"As a result" indicates:', options: ['Introduction', 'Cause-effect: result', 'Contrast', 'Example'], correctIndex: 1, explanation: 'Result of something.' },
+    { id: 14, question: 'Definition sentence (X is Y) often:', options: ['Comes last', 'Comes early to introduce term', 'Is omitted', 'Repeated'], correctIndex: 1, explanation: 'Introduces concept.' },
+    { id: 15, question: 'Questions in a para usually:', options: ['Start the para', 'Come before answer or lead to next point', 'End every para', 'Stand alone'], correctIndex: 1, explanation: 'Rhetorical or lead-in.' },
+    { id: 16, question: 'Sequence: problem-solution:', options: ['Solution then problem', 'Problem then solution', 'Random', 'Only problem'], correctIndex: 1, explanation: 'Logical order.' },
+    { id: 17, question: '"Similarly" suggests:', options: ['Contrast', 'Comparison or parallel point', 'Conclusion', 'Introduction'], correctIndex: 1, explanation: 'Same kind of idea.' },
+    { id: 18, question: 'Sentence with "Finally" or "Lastly" usually:', options: ['Starts para', 'Is in the middle', 'Comes toward the end', 'Is deleted'], correctIndex: 2, explanation: 'Last point.' },
+    { id: 19, question: 'Pronoun "it" in a sentence:', options: ['Always starts para', 'Refers to something earlier', 'Always ends para', 'Has no reference'], correctIndex: 1, explanation: 'Needs antecedent.' },
+    { id: 20, question: 'Logical order is:', options: ['Same as alphabetical', 'Order that makes sense to reader', 'Longest to shortest', 'Random'], correctIndex: 1, explanation: 'Coherent flow.' },
+  ],
 }

@@ -1,9 +1,130 @@
-export const placeholder = {
-  title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+export const syllogismsBasicsAssignment = {
+  title: 'Syllogisms – Basics (Assignment)',
+  questions: [
+    {
+      id: 1,
+      question: 'Which word represents complete inclusion?',
+      options: ['Some', 'May', 'All', 'Few'],
+      correctIndex: 2,
+    },
+    {
+      id: 2,
+      question: 'Which conclusion should be rejected?',
+      options: [
+        'Logical',
+        'Contradictory',
+        'Possibility-based',
+        'Definite',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 3,
+      question: 'Which syllogism rule is correct?',
+      options: [
+        'Assume missing facts',
+        'Use real-life logic',
+        'Stick to given statements',
+        'Guess if unsure',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 4,
+      question: 'If something is possible, it should?',
+      options: ['Be denied', 'Be accepted', 'Be ignored', 'Be assumed'],
+      correctIndex: 1,
+    },
+    {
+      id: 5,
+      question: 'Either–or conclusions mean?',
+      options: [
+        'Both follow',
+        'None follow',
+        'Only one follows',
+        'Both possible',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 6,
+      question: 'Which diagram helps most in syllogisms?',
+      options: ['Bar', 'Line', 'Venn', 'Pie'],
+      correctIndex: 2,
+    },
+    {
+      id: 7,
+      question: 'Which conclusion type is safest in exams?',
+      options: ['Assumed', 'Possibility', 'Definite', 'Emotional'],
+      correctIndex: 2,
+    },
+    {
+      id: 8,
+      question: 'Syllogism questions mainly appear in?',
+      options: ['Math', 'English', 'Reasoning', 'GK'],
+      correctIndex: 2,
+    },
+    {
+      id: 9,
+      question: 'Which mistake is most common?',
+      options: [
+        'Drawing Venn diagrams',
+        'Using assumptions',
+        'Checking conclusions',
+        'Following rules',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 10,
+      question: 'Syllogisms become easy with?',
+      options: ['Luck', 'Practice & rule clarity', 'Guessing', 'Speed'],
+      correctIndex: 1,
+    },
+    {
+      id: 11,
+      question: 'Which statement is negative?',
+      options: [
+        'All cats are animals',
+        'Some cats are black',
+        'No cats are dogs',
+        'Some cats may be dogs',
+      ],
+      correctIndex: 2,
+    },
+    {
+      id: 12,
+      question: 'Which conclusion uses flexibility?',
+      options: ['All', 'No', 'Some may be', 'None'],
+      correctIndex: 2,
+    },
+    {
+      id: 13,
+      question: 'Syllogism accuracy depends mainly on?',
+      options: ['Speed', 'Memory', 'Rule application', 'Luck'],
+      correctIndex: 2,
+    },
+    {
+      id: 14,
+      question: 'Which should be checked before final answer?',
+      options: [
+        'Real-life truth',
+        'Logical validity',
+        'Opinion',
+        'Assumption',
+      ],
+      correctIndex: 1,
+    },
+    {
+      id: 15,
+      question: 'Final step in syllogism solving?',
+      options: [
+        'Guess answer',
+        'Verify with rules',
+        'Skip question',
+        'Change option',
+      ],
+      correctIndex: 1,
+    },
+  ],
 }

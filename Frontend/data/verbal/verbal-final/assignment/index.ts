@@ -1,9 +1,25 @@
-export const placeholder = {
+export const verbalFinalAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'RC: Best title questions test:', options: ['a line', 'the main idea', 'a word', 'the author'], correctIndex: 1, explanation: 'Title should reflect the main idea.' },
+    { id: 2, question: 'SC: Each of the girls ___ a book.', options: ['have', 'has', 'having', 'had'], correctIndex: 1, explanation: 'Each of + plural takes singular verb.' },
+    { id: 3, question: 'Error: She dont know the answer.', options: ['She', 'dont', 'know', 'No error'], correctIndex: 1, explanation: 'Third person singular: does not or does not.' },
+    { id: 4, question: 'Fill: We are confident ___ success.', options: ['of', 'in', 'about', 'for'], correctIndex: 0, explanation: 'Confident of is correct.' },
+    { id: 5, question: 'Synonym of ABUNDANT:', options: ['Scarce', 'Plentiful', 'Few', 'Rare'], correctIndex: 1, explanation: 'Abundant means plentiful.' },
+    { id: 6, question: 'Passive: They built the bridge.', options: ['The bridge was built by them.', 'The bridge is built by them.', 'The bridge built by them.', 'The bridge had built by them.'], correctIndex: 0, explanation: 'Past passive: was/were + past participle.' },
+    { id: 7, question: 'Indirect: She said, I am tired.', options: ['She said that she was tired.', 'She said that she is tired.', 'She said she am tired.', 'She said I was tired.'], correctIndex: 0, explanation: 'Present to past; I to she.' },
+    { id: 8, question: 'Cloze: Neither ___ the options is correct.', options: ['of', 'from', 'among', 'between'], correctIndex: 0, explanation: 'Neither of is correct.' },
+    { id: 9, question: 'Meaning of CANDID:', options: ['Secretive', 'Frank', 'Dishonest', 'Hidden'], correctIndex: 1, explanation: 'Candid means frank and honest.' },
+    { id: 10, question: 'Correct: The news are bad.', options: ['The news is bad.', 'The news are bad.', 'The news were bad.', 'No change'], correctIndex: 0, explanation: 'News is uncountable; use is.' },
+    { id: 11, question: 'Para jumble: First step is usually:', options: ['find the opening or closing sentence', 'read all sentences', 'guess the order', 'pick the longest'], correctIndex: 0, explanation: 'Finding opening or closing sentence helps.' },
+    { id: 12, question: 'Error: He is senior than me.', options: ['He', 'senior', 'than', 'No error'], correctIndex: 1, explanation: 'Senior to, not than.' },
+    { id: 13, question: 'Fill: Prefer ___ to driving.', options: ['walking', 'walk', 'walked', 'walks'], correctIndex: 0, explanation: 'Prefer + gerund to + gerund.' },
+    { id: 14, question: 'Synonym of WARY:', options: ['Careless', 'Cautious', 'Bold', 'Rash'], correctIndex: 1, explanation: 'Wary means cautious.' },
+    { id: 15, question: 'Voice: The letter was written by her.', options: ['She wrote the letter.', 'She had written the letter.', 'She writes the letter.', 'She was written the letter.'], correctIndex: 0, explanation: 'Active form of past passive.' },
+    { id: 16, question: 'Indirect: He said, I will try.', options: ['He said that he would try.', 'He said that he will try.', 'He said he would tried.', 'He said I would try.'], correctIndex: 0, explanation: 'Will becomes would.' },
+    { id: 17, question: 'Cloze: The matter is ___ discussion.', options: ['under', 'in', 'on', 'at'], correctIndex: 0, explanation: 'Under discussion is the phrase.' },
+    { id: 18, question: 'Meaning of ECCENTRIC:', options: ['Normal', 'Unconventional', 'Ordinary', 'Typical'], correctIndex: 1, explanation: 'Eccentric means unconventional.' },
+    { id: 19, question: 'Correct: He is better than me in maths.', options: ['He is better than I in maths.', 'He is better than me in maths.', 'He is better then I in maths.', 'No change'], correctIndex: 0, explanation: 'Formal: than I (am).' },
+    { id: 20, question: 'RC: Inference questions require:', options: ['copying a line', 'reading between the lines', 'ignoring the passage', 'guessing'], correctIndex: 1, explanation: 'Inference means drawing a conclusion from the text.' },
+  ],
 }

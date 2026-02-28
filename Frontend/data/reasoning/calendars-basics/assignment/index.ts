@@ -1,9 +1,25 @@
-export const placeholder = {
+export const calendarsBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'What day was 1 Jan 2001 if 1 Jan 2000 was Saturday?', options: ['Saturday', 'Sunday', 'Monday', 'Tuesday'], correctIndex: 2, explanation: '2000 leap, 2 odd days.' },
+    { id: 2, question: 'Odd days in 300 years?', options: ['0', '1', '3', '5'], correctIndex: 2, explanation: '3 centuries.' },
+    { id: 3, question: 'In a non-leap year, February has how many odd days?', options: ['0', '1', '2', '3'], correctIndex: 0, explanation: '28 = 4 weeks.' },
+    { id: 4, question: 'If 5th of a month is Tuesday, what is 26th?', options: ['Tuesday', 'Wednesday', 'Monday', 'Thursday'], correctIndex: 0, explanation: '21 days later, same day.' },
+    { id: 5, question: 'Which century year is a leap year?', options: ['1900', '2000', '2100', '1800'], correctIndex: 1, explanation: '2000 div by 400.' },
+    { id: 6, question: 'Odd days in 50 years?', options: ['3', '4', '5', '6'], correctIndex: 3, explanation: '12 leap + 38 ordinary.' },
+    { id: 7, question: 'March has 31 days. Odd days in March?', options: ['1', '2', '3', '4'], correctIndex: 2, explanation: '31 mod 7 = 3.' },
+    { id: 8, question: 'If 1 Jan 2020 was Wednesday, 1 Jan 2021 is?', options: ['Wednesday', 'Thursday', 'Friday', 'Saturday'], correctIndex: 3, explanation: '2020 leap, 2 odd days.' },
+    { id: 9, question: 'How many leap years in 100 years (excluding century)?', options: ['24', '25', '26', '23'], correctIndex: 0, explanation: 'Every 4th year.' },
+    { id: 10, question: 'Odd days in April (30 days)?', options: ['1', '2', '3', '0'], correctIndex: 1, explanation: '30 mod 7 = 2.' },
+    { id: 11, question: 'Today is Sunday. What day after 100 days?', options: ['Monday', 'Tuesday', 'Sunday', 'Saturday'], correctIndex: 1, explanation: '100 mod 7 = 2.' },
+    { id: 12, question: '1 Jan 1990 was Monday. 1 Jan 1991?', options: ['Monday', 'Tuesday', 'Wednesday', 'Sunday'], correctIndex: 1, explanation: '1 odd day.' },
+    { id: 13, question: 'If 15th is Wednesday, 22nd is?', options: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'], correctIndex: 1, explanation: '7 days later.' },
+    { id: 14, question: 'Year 2024 has how many odd days?', options: ['0', '1', '2', '3'], correctIndex: 2, explanation: 'Leap year.' },
+    { id: 15, question: 'How many months have 30 days?', options: ['3', '4', '5', '6'], correctIndex: 1, explanation: 'Apr, Jun, Sep, Nov.' },
+    { id: 16, question: 'Odd days in 1 week?', options: ['0', '1', '7', '2'], correctIndex: 0, explanation: '7 mod 7 = 0.' },
+    { id: 17, question: 'If 10th is Friday, 24th is?', options: ['Friday', 'Saturday', 'Thursday', 'Sunday'], correctIndex: 0, explanation: '14 days later.' },
+    { id: 18, question: 'February in leap year has how many odd days?', options: ['0', '1', '2', '3'], correctIndex: 1, explanation: '29 mod 7 = 1.' },
+    { id: 19, question: '400 years have how many odd days?', options: ['0', '1', '5', '3'], correctIndex: 0, explanation: 'Cycle repeats.' },
+    { id: 20, question: '1 Jan 2022 was Saturday. 1 Jan 2023?', options: ['Saturday', 'Sunday', 'Monday', 'Friday'], correctIndex: 1, explanation: '2022 ordinary, 1 odd day.' },
+  ],
 }

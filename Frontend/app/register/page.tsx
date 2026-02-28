@@ -41,7 +41,8 @@ export default function RegisterPage() {
         setLoading(false)
         return
       }
-      router.push('/login?registered=1')
+      setLoading(false)
+      window.location.href = '/login?registered=1'
     } catch {
       setError('Network error. Is the backend running?')
       setLoading(false)

@@ -1,9 +1,25 @@
-export const placeholder = {
+export const clock1Assignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Angle between hands at 9:00?', options: ['90°', '180°', '270°', '0°'], correctIndex: 0, explanation: '9×30 = 270° or 90° (smaller).' },
+    { id: 2, question: 'Angle between hands at 2:30?', options: ['105°', '120°', '90°', '75°'], correctIndex: 0, explanation: '|60 − 165| = 105°.' },
+    { id: 3, question: 'How many times are hands at right angle in 12 hours?', options: ['22', '24', '11', '12'], correctIndex: 0, explanation: 'Right angle 22 times in 12 hours.' },
+    { id: 4, question: 'At what time between 7 and 8 are hands coincident?', options: ['7:38 2/11', '7:35', '7:40', '7:42'], correctIndex: 0, explanation: '35 min past 7; 35 + 5/11 ≈ 38 2/11.' },
+    { id: 5, question: 'Minute hand gains 330° over hour hand in how many minutes?', options: ['55', '60', '65', '70'], correctIndex: 1, explanation: '330/5.5 = 60 min.' },
+    { id: 6, question: 'Angle at 4:20?', options: ['0°', '10°', '20°', '30°'], correctIndex: 1, explanation: '|120 − 130| = 10°.' },
+    { id: 7, question: 'Hands opposite at 12. Next opposite at?', options: ['12:32 8/11', '12:30', '1:05 5/11', '12:35'], correctIndex: 0, explanation: '65 5/11 min later.' },
+    { id: 8, question: 'Angle at 5:15?', options: ['60°', '67.5°', '90°', '75°'], correctIndex: 1, explanation: 'Hour at 157.5°, minute at 90°; diff 67.5°.' },
+    { id: 9, question: 'How many times do hands coincide in 24 hours?', options: ['22', '23', '24', '12'], correctIndex: 0, explanation: '11 in 12 hr → 22 in 24 hr.' },
+    { id: 10, question: 'At 10:10, angle between hands?', options: ['245°', '115°', '125°', '235°'], correctIndex: 1, explanation: '|300 − 55| = 245; 360−245 = 115 (smaller).' },
+    { id: 11, question: 'Hour hand moves 1° in how many minutes?', options: ['1', '2', '1/2', '3'], correctIndex: 1, explanation: '0.5° per min → 2 min per degree.' },
+    { id: 12, question: 'Between 3 and 4, when are hands at right angle (first time)?', options: ['3:32 8/11', '3:30', '3:27 3/11', '3:35'], correctIndex: 2, explanation: 'First right angle after 3 at ~27 3/11 min.' },
+    { id: 13, question: 'Angle at 6:30?', options: ['0°', '15°', '30°', '45°'], correctIndex: 1, explanation: 'Hour 195°, minute 180°; 15°.' },
+    { id: 14, question: 'In 1 hour, minute hand gains over hour hand?', options: ['330°', '360°', '30°', '0°'], correctIndex: 0, explanation: 'Minute 360°, hour 30°; 330°.' },
+    { id: 15, question: 'At 12:15, angle?', options: ['82.5°', '90°', '75°', '80°'], correctIndex: 0, explanation: 'Hour 7.5°, minute 90°; 82.5°.' },
+    { id: 16, question: 'Hands coincide every ___ minutes (after 12).', options: ['65', '64', '65 5/11', '66'], correctIndex: 2, explanation: '360/5.5 = 65 5/11.' },
+    { id: 17, question: 'Angle at 8:00?', options: ['120°', '240°', '90°', '180°'], correctIndex: 0, explanation: '8×30 = 240° or 120° (smaller).' },
+    { id: 18, question: 'Between 2 and 3, hands at 180° at?', options: ['2:43 7/11', '2:45', '2:40', '2:50'], correctIndex: 0, explanation: '~43 7/11 min past 2.' },
+    { id: 19, question: 'At 1:05, minute hand has moved ___ degrees from 12.', options: ['30°', '60°', '90°', '25°'], correctIndex: 0, explanation: '5×6 = 30°.' },
+    { id: 20, question: 'How many times in 12 hours are hands straight (0° or 180°)?', options: ['11', '22', '12', '24'], correctIndex: 1, explanation: '0° (coincide) 11 + 180° (opposite) 11 = 22.' },
+  ],
 }

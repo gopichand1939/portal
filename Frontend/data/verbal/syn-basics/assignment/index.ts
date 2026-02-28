@@ -1,9 +1,25 @@
-export const placeholder = {
+export const synBasicsAssignment = {
   title: 'Assignment (20 MCQs)',
-  questions: Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    question: 'Question ' + (i + 1) + ' (placeholder)',
-    options: ['A', 'B', 'C', 'D'],
-    correctIndex: 0,
-  })),
+  questions: [
+    { id: 1, question: 'Synonym of ABANDON:', options: ['Keep', 'Leave', 'Hold', 'Retain'], correctIndex: 1, explanation: 'Leave or give up.' },
+    { id: 2, question: 'Antonym of ABUNDANT:', options: ['Plenty', 'Scarce', 'Full', 'Rich'], correctIndex: 1, explanation: 'Scarce means rare.' },
+    { id: 3, question: 'Synonym of ACCURATE:', options: ['Wrong', 'Correct', 'False', 'Bad'], correctIndex: 1, explanation: 'Correct, precise.' },
+    { id: 4, question: 'Antonym of ADD:', options: ['Plus', 'Subtract', 'Sum', 'Total'], correctIndex: 1, explanation: 'Subtract is opposite.' },
+    { id: 5, question: 'Synonym of ADMIRE:', options: ['Hate', 'Respect', 'Ignore', 'Blame'], correctIndex: 1, explanation: 'Respect, look up to.' },
+    { id: 6, question: 'Antonym of ADVANCE:', options: ['Forward', 'Retreat', 'Progress', 'Grow'], correctIndex: 1, explanation: 'Retreat is opposite.' },
+    { id: 7, question: 'Synonym of ANGRY:', options: ['Calm', 'Furious', 'Happy', 'Mild'], correctIndex: 1, explanation: 'Furious means very angry.' },
+    { id: 8, question: 'Antonym of BEAUTIFUL:', options: ['Pretty', 'Ugly', 'Nice', 'Fair'], correctIndex: 1, explanation: 'Ugly is opposite.' },
+    { id: 9, question: 'Synonym of BRAVE:', options: ['Coward', 'Courageous', 'Weak', 'Scared'], correctIndex: 1, explanation: 'Courageous.' },
+    { id: 10, question: 'Antonym of BROAD:', options: ['Wide', 'Narrow', 'Big', 'Large'], correctIndex: 1, explanation: 'Narrow is opposite.' },
+    { id: 11, question: 'Synonym of CAREFUL:', options: ['Rash', 'Cautious', 'Quick', 'Careless'], correctIndex: 1, explanation: 'Cautious.' },
+    { id: 12, question: 'Antonym of CLEVER:', options: ['Smart', 'Stupid', 'Bright', 'Sharp'], correctIndex: 1, explanation: 'Stupid is opposite.' },
+    { id: 13, question: 'Synonym of CONCEAL:', options: ['Show', 'Hide', 'Reveal', 'Display'], correctIndex: 1, explanation: 'Hide.' },
+    { id: 14, question: 'Antonym of CONSTRUCT:', options: ['Build', 'Destroy', 'Make', 'Create'], correctIndex: 1, explanation: 'Destroy is opposite.' },
+    { id: 15, question: 'Synonym of DELAY:', options: ['Hasten', 'Postpone', 'Rush', 'Quick'], correctIndex: 1, explanation: 'Postpone.' },
+    { id: 16, question: 'Antonym of DENSE:', options: ['Thick', 'Sparse', 'Heavy', 'Solid'], correctIndex: 1, explanation: 'Sparse is opposite.' },
+    { id: 17, question: 'Synonym of ENORMOUS:', options: ['Tiny', 'Huge', 'Small', 'Little'], correctIndex: 1, explanation: 'Huge.' },
+    { id: 18, question: 'Antonym of EXPAND:', options: ['Grow', 'Shrink', 'Increase', 'Extend'], correctIndex: 1, explanation: 'Shrink is opposite.' },
+    { id: 19, question: 'Synonym of FRAIL:', options: ['Strong', 'Weak', 'Firm', 'Sturdy'], correctIndex: 1, explanation: 'Weak.' },
+    { id: 20, question: 'Antonym of GUILTY:', options: ['Innocent', 'Wrong', 'Blame', 'Fault'], correctIndex: 0, explanation: 'Innocent is opposite.' },
+  ],
 }
