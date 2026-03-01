@@ -1,6 +1,6 @@
 // Backend base URL — switch to localhost when developing locally
-// const DEPLOYED_BACKEND = 'https://learning-portal-e19t.onrender.com'
-const DEPLOYED_BACKEND = 'http://localhost:15013'
+const DEPLOYED_BACKEND = 'https://portal-dhz7.onrender.com'
+// const DEPLOYED_BACKEND = 'http://localhost:15013'
 
 export const API_BASE_URL = DEPLOYED_BACKEND
 
