@@ -3,7 +3,6 @@ const {
   register,
   login,
   me,
-  profile,
   resetPassword,
   checkCollegeRegistration,
 } = require('../controller/controller');
@@ -15,7 +14,7 @@ const router = express.Router();
 router.post('/auth/register', register);
 router.post('/auth/login', login);
 router.get('/auth/me', authMiddleware, me);
-router.get('/auth/profile', authMiddleware, profile);
+router.get('/auth/profile', authMiddleware, me);
 router.post('/auth/reset-password', resetPassword);
 router.use('/progress', progressRoutes);
 router.get('/college/check/:registrationNumber', checkCollegeRegistration);
