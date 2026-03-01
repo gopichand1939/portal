@@ -1,7 +1,7 @@
 // Backend base URL — set NEXT_PUBLIC_BACKEND_URL or uses fallback
-// const DEPLOYED_BACKEND = 'https://portal-dhz7.onrender.com'
+const DEPLOYED_BACKEND = 'https://portal-dhz7.onrender.com'
 
-const DEPLOYED_BACKEND = 'http://localhost:15013'
+// const DEPLOYED_BACKEND = 'http://localhost:15013'
 
 
 
