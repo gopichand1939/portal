@@ -42,6 +42,7 @@ function ReasoningContent() {
         <ModuleContentPanel
           selectedNode={selectedNode}
           path={selectedPath}
+          chapterKey="reasoning"
         />
       </div>
     </div>

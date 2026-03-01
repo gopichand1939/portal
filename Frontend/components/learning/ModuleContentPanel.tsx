@@ -3,7 +3,9 @@
 import { memo } from 'react'
 import { BookOpen, CheckCircle } from 'lucide-react'
 import type { ModuleNode } from '@/data/learningModules'
+import type { Subject } from '@/lib/constants'
 import { useLearningProgress } from '@/contexts/LearningProgressContext'
+import { parseNodeIdToProgress, completeContent } from '@/lib/progressApi'
 import CodingPracticePanel from '@/components/learning/CodingPracticePanel'
 import ExercisePanel from '@/components/learning/ExercisePanel'
 import AssignmentPanel from '@/components/learning/AssignmentPanel'
@@ -17,13 +19,33 @@ import {
 interface ModuleContentPanelProps {
   selectedNode: ModuleNode | null
   path: string[]
+  /** Subject for progress API (aptitude | reasoning | verbal | python) */
+  chapterKey?: Subject
+  /** For Python: whether this module has coding content (completion requires coding when true). */
+  moduleHasCoding?: boolean
 }
 
 function ModuleContentPanel({
   selectedNode,
   path,
+  chapterKey,
+  moduleHasCoding,
 }: ModuleContentPanelProps) {
-  const { isCompleted, markComplete } = useLearningProgress()
+  const { isCompleted, refreshProgress } = useLearningProgress()
+  const parsed = selectedNode ? parseNodeIdToProgress(selectedNode.id) : null
+  const moduleKey = parsed?.moduleKey
+
+  const handleStudyComplete = () => {
+    if (!chapterKey || !moduleKey) return
+    completeContent({
+      subject: chapterKey,
+      moduleKey,
+      contentType: 'STUDY',
+      moduleHasCoding,
+    })
+      .then((res) => res.ok && refreshProgress())
+      .catch(() => {})
+  }
 
   if (!selectedNode) {
     return (
@@ -42,7 +64,7 @@ function ModuleContentPanel({
   const isAssignment = selectedNode.type === 'assignment'
   const isCoding = selectedNode.type === 'coding'
   const isLeaf = !!selectedNode.type
-  const completed = isLeaf && isCompleted(selectedNode.id)
+  const completed = isLeaf && chapterKey ? isCompleted(selectedNode.id, chapterKey as Subject) : false
 
   if (isCoding) {
     return (
@@ -50,7 +72,7 @@ function ModuleContentPanel({
         <CodingPracticePanel
           nodeId={selectedNode.id}
           path={path}
-          onMarkComplete={() => {}}
+          chapterKey={chapterKey}
         />
       </div>
     )
@@ -74,7 +96,7 @@ function ModuleContentPanel({
             {isLeaf && (
               <div className="mt-8 flex justify-end border-t border-gray-100 pt-6">
                 <button
-                  onClick={() => !completed && markComplete(selectedNode.id)}
+                  onClick={() => !completed && handleStudyComplete()}
                   disabled={completed}
                   className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
                     completed
@@ -90,32 +112,27 @@ function ModuleContentPanel({
           </>
         )}
 
-        {isExercise && exerciseContentMap[selectedNode.id] && (
-          <ExercisePanel exercise={exerciseContentMap[selectedNode.id]} />
+        {isExercise && exerciseContentMap[selectedNode.id] && chapterKey && moduleKey && (
+          <ExercisePanel
+            exercise={exerciseContentMap[selectedNode.id]}
+            subject={chapterKey}
+            moduleKey={moduleKey}
+            onProgressComplete={refreshProgress}
+            moduleHasCoding={moduleHasCoding}
+          />
         )}
 
-        {isAssignment && assignmentContentMap[selectedNode.id] && (
-          <AssignmentPanel assignment={assignmentContentMap[selectedNode.id]} />
+        {isAssignment && assignmentContentMap[selectedNode.id] && chapterKey && moduleKey && (
+          <AssignmentPanel
+            assignment={assignmentContentMap[selectedNode.id]}
+            subject={chapterKey}
+            moduleKey={moduleKey}
+            onProgressComplete={refreshProgress}
+            moduleHasCoding={moduleHasCoding}
+          />
         )}
       </div>
 
-      {/* Footer for exercise/assignment */}
-      {isLeaf && !isStudy && (isExercise || isAssignment) && (
-        <div className="border-t border-gray-100 px-6 py-4 flex justify-end">
-          <button
-            onClick={() => !completed && markComplete(selectedNode.id)}
-            disabled={completed}
-            className={`flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors ${
-              completed
-                ? 'bg-primary-100 text-primary-700'
-                : 'bg-primary-600 text-white hover:bg-primary-700'
-            }`}
-          >
-            <CheckCircle className="h-5 w-5" />
-            {completed ? 'Completed' : 'Mark as complete'}
-          </button>
-        </div>
-      )}
     </div>
   )
 }

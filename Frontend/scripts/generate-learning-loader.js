@@ -5,7 +5,84 @@ const DATA_DIR = path.join(__dirname, '..', 'data')
 const MODULES = ['aptitude', 'reasoning', 'verbal', 'python']
 const ACTIONS = ['study', 'exercise', 'assignment', 'coding']
 
+// Sidebar order for aptitude topics (labels: Number Systems, LCM & HCF, …)
+const APTITUDE_TOPIC_ORDER = [
+  'numbers',           // Number Systems
+  'lcm-hcf-concepts',  // LCM & HCF (Concepts)
+  'lcm-hcf-apps',      // LCM & HCF (Applications)
+  'percentages-basics',
+  'profit-loss-basics',
+  'si',                // Simple Interest
+  'ci',                // Compound Interest
+  'ratios-basics',
+  'mixtures-basics',
+  'partnerships-basics',
+  'ages-basics',
+  'averages-basics',
+  'tsd-basics',        // Time, Speed & Distance
+  'time-work-basics',
+  'perm-comb-basics',
+  'probability-basics',
+  'company-mcq-ns',    // Company Specific Aptitude
+  'powercycles',
+  'remainder-cycles',
+  'aptitude-final',
+]
+
+// Sidebar order for reasoning topics
+const REASONING_TOPIC_ORDER = [
+  'clock-1',           // Clocks
+  'clock-2',
+  'clock-3',
+  'calendars-basics',  // Calendars
+  'di-basics',         // Data Interpretation
+  'ranking-basics',    // Ranking
+  'directions-basics', // Directions
+  'coding-basics',     // Coding & Decoding
+  'data-arr-basics',   // Data Arrangements
+  'blood-basics',      // Blood Relations
+  'venn-basics',      // Venn Diagrams
+  'syllogisms-basics', // Syllogisms
+  'cubes-basics',      // Cubes
+  'puzzles-basics',    // Puzzles
+  'ds-basics',         // Data Sufficiency
+  'company-mcq-clocks', // Company Specific Reasoning
+  'reasoning-final',   // Final Assessment
+]
+
+// Sidebar order for verbal topics
+const VERBAL_TOPIC_ORDER = [
+  'rc-basics',         // Reading Comprehension
+  'sc-basics',         // Sentence Correction
+  'error-basics',      // Error Spotting
+  'fill-basics',       // Fill in the Blanks
+  'para-basics',       // Para Jumbles
+  'syn-basics',        // Synonyms & Antonyms
+  'vocab-basics',      // Vocabulary
+  'voice-basics',      // Active & Passive Voice
+  'speech-basics',     // Direct & Indirect Speech
+  'cloze-basics',      // Cloze Test
+  'verbal-company-mcq', // Company Specific Verbal
+  'verbal-final',      // Final Assessment
+]
+
+// Sidebar order for python topics
+const PYTHON_TOPIC_ORDER = [
+  'intro-python',      // Introduction to Python
+  'io-basics',         // I/O Basics
+  'operators-conditionals', // Operators & Conditional Statements
+  'nested-conditions', // Nested Conditions
+  'loops',             // Loops
+  'loop-control',      // Loop Control Statements
+  'strings-variables', // Strings & Variables
+  'lists',             // Lists
+  'functions',         // Functions
+  'recursion',         // Recursion
+  'python-company-mcq', // Company / Interview-Specific Python Questions
+]
+
 const LABEL_OVERRIDES = {
+  numbers: 'Number Systems',
   'lcm-hcf-concepts': 'LCM & HCF (Concepts)',
   'lcm-hcf-apps': 'LCM & HCF (Applications)',
   'percentages-basics': 'Percentages',
@@ -21,7 +98,7 @@ const LABEL_OVERRIDES = {
   'time-work-basics': 'Time & Work',
   'perm-comb-basics': 'Permutations & Combinations',
   'probability-basics': 'Probability',
-  'company-mcq-ns': 'Company-Specific MCQs',
+  'company-mcq-ns': 'Company Specific Aptitude',
   'aptitude-final': 'Final Assessment',
   powercycles: 'Power Cycles',
   'reasoning-final': 'Final Assessment',
@@ -35,7 +112,7 @@ const LABEL_OVERRIDES = {
   'clock-1': 'Clock 1',
   'clock-2': 'Clock 2',
   'clock-3': 'Clock 3',
-  'company-mcq-clocks': 'Company-Specific MCQs',
+  'company-mcq-clocks': 'Company Specific Reasoning',
   'calendars-basics': 'Calendars',
   'di-basics': 'Data Interpretation',
   'ranking-basics': 'Ranking',
@@ -58,7 +135,8 @@ const LABEL_OVERRIDES = {
   'voice-basics': 'Active & Passive Voice',
   'speech-basics': 'Direct & Indirect Speech',
   'cloze-basics': 'Cloze Test',
-  'verbal-company-mcq': 'Company-Specific MCQs',
+  'verbal-company-mcq': 'Company Specific Verbal',
+  'python-company-mcq': 'Company / Interview-Specific Python Questions',
 }
 
 function labelFromId(topicId) {
@@ -101,6 +179,50 @@ function scanModule(moduleId) {
       topicId,
       label: labelFromId(topicId),
       actions,
+    })
+  }
+  if (moduleId === 'aptitude') {
+    const order = APTITUDE_TOPIC_ORDER
+    return configs.sort((a, b) => {
+      const i = order.indexOf(a.topicId)
+      const j = order.indexOf(b.topicId)
+      if (i !== -1 && j !== -1) return i - j
+      if (i !== -1) return -1
+      if (j !== -1) return 1
+      return a.topicId.localeCompare(b.topicId)
+    })
+  }
+  if (moduleId === 'reasoning') {
+    const order = REASONING_TOPIC_ORDER
+    return configs.sort((a, b) => {
+      const i = order.indexOf(a.topicId)
+      const j = order.indexOf(b.topicId)
+      if (i !== -1 && j !== -1) return i - j
+      if (i !== -1) return -1
+      if (j !== -1) return 1
+      return a.topicId.localeCompare(b.topicId)
+    })
+  }
+  if (moduleId === 'verbal') {
+    const order = VERBAL_TOPIC_ORDER
+    return configs.sort((a, b) => {
+      const i = order.indexOf(a.topicId)
+      const j = order.indexOf(b.topicId)
+      if (i !== -1 && j !== -1) return i - j
+      if (i !== -1) return -1
+      if (j !== -1) return 1
+      return a.topicId.localeCompare(b.topicId)
+    })
+  }
+  if (moduleId === 'python') {
+    const order = PYTHON_TOPIC_ORDER
+    return configs.sort((a, b) => {
+      const i = order.indexOf(a.topicId)
+      const j = order.indexOf(b.topicId)
+      if (i !== -1 && j !== -1) return i - j
+      if (i !== -1) return -1
+      if (j !== -1) return 1
+      return a.topicId.localeCompare(b.topicId)
     })
   }
   return configs.sort((a, b) => a.topicId.localeCompare(b.topicId))

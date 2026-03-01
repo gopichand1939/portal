@@ -1,10 +1,27 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Sidebar from '@/components/layout/Sidebar'
 import Navbar from '@/components/layout/Navbar'
 import AuthGuard from '@/components/layout/AuthGuard'
 import { LearningProgressProvider } from '@/contexts/LearningProgressContext'
+import { API_AUTH_PROFILE } from '@/lib/constants'
+
+function fetchAndStoreProfile() {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+  if (!token) return
+  fetch(API_AUTH_PROFILE, {
+    headers: { Authorization: `Bearer ${token}` },
+    cache: 'no-store',
+  })
+    .then((res) => (res.ok ? res.json() : null))
+    .then((data) => {
+      if (data && typeof data === 'object' && (data.id != null || data.name != null || data.email != null)) {
+        typeof window !== 'undefined' && localStorage.setItem('user', JSON.stringify({ id: data.id, name: data.name, email: data.email }))
+      }
+    })
+    .catch(() => {})
+}
 
 export default function DashboardLayout({
   children,
@@ -14,6 +31,10 @@ export default function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const onClose = useCallback(() => setSidebarOpen(false), [])
   const onMenuClick = useCallback(() => setSidebarOpen(true), [])
+
+  useEffect(() => {
+    fetchAndStoreProfile()
+  }, [])
 
   return (
     <AuthGuard>

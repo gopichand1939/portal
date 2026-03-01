@@ -1,3 +1,7 @@
+/**
+ * @deprecated Completion is now student-scoped and driven only by Progress APIs.
+ * Do not use for completion indicators. See LearningProgressContext.
+ */
 const STORAGE_KEY = 'learning-completed'
 
 export function getCompletedIds(): Set<string> {

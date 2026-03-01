@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import ProgressCard from '@/components/ui/ProgressCard'
 import {
@@ -12,55 +12,93 @@ import {
   CheckCircle2,
   Circle,
   ArrowLeft,
+  XCircle,
 } from 'lucide-react'
 import Link from 'next/link'
 import { aptitudeDailyContent } from '@/data/aptitude'
-import {
-  dailyProgress,
-  dailySchedule,
-} from '@/data/mockData'
 import type { AptitudeDayContent } from '@/data/aptitude'
+
+const PASS_PERCENT = 60
+
+function toQuestionsArray(raw: unknown): any[] {
+  if (Array.isArray(raw)) return raw
+  if (raw && typeof raw === 'object' && 'questions' in raw && Array.isArray((raw as any).questions)) return (raw as any).questions
+  return []
+}
 
 export default function AptitudeDayPage() {
   const params = useParams()
   const day = params?.day as string
   const dayNumber = parseInt(day?.replace('day-', '') || '1')
 
-  const [practiceAnswers, setPracticeAnswers] = useState<Record<number, string | number>>(
-    {}
-  )
+  const [learnComplete, setLearnComplete] = useState(false)
+  const [practiceAnswers, setPracticeAnswers] = useState<Record<number, string | number>>({})
   const [practiceSubmitted, setPracticeSubmitted] = useState(false)
+  const [practiceScore, setPracticeScore] = useState<number | null>(null)
   const [testAnswers, setTestAnswers] = useState<{ [key: number]: number }>({})
   const [testSubmitted, setTestSubmitted] = useState(false)
+  const [testScore, setTestScore] = useState<number | null>(null)
   const [currentTestQuestion, setCurrentTestQuestion] = useState(0)
 
   const dayContent: AptitudeDayContent =
     (aptitudeDailyContent as Record<number, AptitudeDayContent>)[dayNumber] ??
     aptitudeDailyContent[1]
 
-  const overallProgress =
-    (dailyProgress.learn.progress +
-      dailyProgress.practice.progress +
-      dailyProgress.test.progress) /
-    3
+  const aptitudePracticeQuestions = useMemo(() => toQuestionsArray(dayContent.practiceQuestions), [dayContent.practiceQuestions])
+  const aptitudeTestQuestions = useMemo(() => toQuestionsArray(dayContent.testQuestions), [dayContent.testQuestions])
+
+  const practicePassed = practiceScore !== null && practiceScore >= PASS_PERCENT
+  const testPassed = testScore !== null && testScore >= PASS_PERCENT
+
+  const scheduleItems = useMemo(() => [
+    { activity: 'Learn Section', status: learnComplete ? 'completed' as const : 'pending' as const },
+    { activity: 'Practice Section', status: !practiceSubmitted ? 'pending' as const : practicePassed ? 'completed' as const : 'in-progress' as const },
+    { activity: 'Test Section', status: !testSubmitted ? 'pending' as const : testPassed ? 'completed' as const : 'in-progress' as const },
+  ], [learnComplete, practiceSubmitted, practicePassed, testSubmitted, testPassed])
+
+  const overallProgress = useMemo(() => {
+    let n = 0
+    if (learnComplete) n += 1
+    if (practicePassed) n += 1
+    if (testPassed) n += 1
+    return (n / 3) * 100
+  }, [learnComplete, practicePassed, testPassed])
+
+  const handlePracticeSubmit = () => {
+    if (aptitudePracticeQuestions.length === 0) {
+      setPracticeSubmitted(true)
+      setPracticeScore(0)
+      return
+    }
+    let correct = 0
+    aptitudePracticeQuestions.forEach((q: any) => {
+      const correctIdx = q.correctIndex ?? q.correct
+      if (practiceAnswers[q.id] === correctIdx) correct++
+    })
+    const pct = Math.round((correct / aptitudePracticeQuestions.length) * 100)
+    setPracticeScore(pct)
+    setPracticeSubmitted(true)
+  }
 
   const handleTestSubmit = () => {
+    if (aptitudeTestQuestions.length === 0) {
+      setTestSubmitted(true)
+      setTestScore(0)
+      return
+    }
+    let correct = 0
+    aptitudeTestQuestions.forEach((q: any) => {
+      const correctIdx = q.correctIndex ?? q.correct
+      if (testAnswers[q.id] === correctIdx) correct++
+    })
+    const pct = Math.round((correct / aptitudeTestQuestions.length) * 100)
+    setTestScore(pct)
     setTestSubmitted(true)
   }
 
-  const calculateTestScore = () => {
-    let correct = 0
-    aptitudeTestQuestions.forEach((q) => {
-      if (testAnswers[q.id] === q.correct) {
-        correct++
-      }
-    })
-    return Math.round((correct / aptitudeTestQuestions.length) * 100)
-  }
+  const calculateTestScore = () => testScore ?? 0
 
   const aptitudeTopics = dayContent.topics
-  const aptitudePracticeQuestions = dayContent.practiceQuestions
-  const aptitudeTestQuestions = dayContent.testQuestions
 
   return (
     <div className="space-y-6">
@@ -92,7 +130,7 @@ export default function AptitudeDayPage() {
             </h2>
           </div>
           <div className="space-y-3">
-{dailySchedule.map((item: any, index: number) => (
+{scheduleItems.map((item, index) => (
               <div
                 key={index}
                 className="flex items-center gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4"
@@ -152,7 +190,7 @@ export default function AptitudeDayPage() {
                 </p>
               </div>
             </div>
-            {dailyProgress.learn.completed ? (
+            {learnComplete ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
                 Completed
@@ -260,11 +298,21 @@ export default function AptitudeDayPage() {
                           {material}
                         </div>
                       ))}
-                    </div>
                   </div>
+                </div>
                 </div>
               </div>
             ))}
+            {!learnComplete && (
+              <div className="mt-4 flex justify-end border-t border-gray-200 pt-4">
+                <button
+                  onClick={() => setLearnComplete(true)}
+                  className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+                >
+                  Mark Learn Complete
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -284,15 +332,18 @@ export default function AptitudeDayPage() {
                 </p>
               </div>
             </div>
-            {dailyProgress.practice.completed ? (
+            {practicePassed ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
-                Completed
+                Completed ({practiceScore}%)
+              </span>
+            ) : practiceSubmitted ? (
+              <span className="flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                <XCircle className="h-4 w-4" />
+                {practiceScore}% — Need {PASS_PERCENT}% to pass
               </span>
             ) : (
-              <span className="text-xs text-gray-500">
-                {dailyProgress.practice.progress}% Complete
-              </span>
+              <span className="text-xs text-gray-500">Not submitted</span>
             )}
           </div>
 
@@ -302,9 +353,11 @@ export default function AptitudeDayPage() {
               const anyQ = q as any
               const isMcq = Array.isArray(anyQ.options)
               const correctOptionIndex =
-                typeof anyQ.correctOptionIndex === 'number'
-                  ? (anyQ.correctOptionIndex as number)
-                  : undefined
+                typeof anyQ.correctIndex === 'number'
+                  ? (anyQ.correctIndex as number)
+                  : typeof anyQ.correctOptionIndex === 'number'
+                    ? (anyQ.correctOptionIndex as number)
+                    : undefined
               const selectedOptionIndex =
                 typeof practiceAnswers[q.id] === 'number'
                   ? (practiceAnswers[q.id] as number)
@@ -425,16 +478,26 @@ export default function AptitudeDayPage() {
             })}
             {!practiceSubmitted ? (
               <button
-                onClick={() => setPracticeSubmitted(true)}
+                onClick={handlePracticeSubmit}
                 className="w-full rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 Submit Practice Answers
               </button>
             ) : (
-              <div className="rounded-lg border-2 border-green-200 bg-green-50 p-4 text-center">
-                <CheckCircle className="mx-auto mb-2 h-8 w-8 text-green-600" />
-                <p className="text-sm font-semibold text-green-900">Practice Answers Submitted!</p>
-                <p className="mt-1 text-xs text-green-700">Review the solutions above.</p>
+              <div className={`rounded-lg border-2 p-4 text-center ${practicePassed ? 'border-green-200 bg-green-50' : 'border-amber-200 bg-amber-50'}`}>
+                {practicePassed ? (
+                  <>
+                    <CheckCircle className="mx-auto mb-2 h-8 w-8 text-green-600" />
+                    <p className="text-sm font-semibold text-green-900">Practice passed! Score: {practiceScore}%</p>
+                    <p className="mt-1 text-xs text-green-700">Review the solutions above.</p>
+                  </>
+                ) : (
+                  <>
+                    <XCircle className="mx-auto mb-2 h-8 w-8 text-amber-600" />
+                    <p className="text-sm font-semibold text-amber-900">Score: {practiceScore}%. Need {PASS_PERCENT}% to pass.</p>
+                    <p className="mt-1 text-xs text-amber-700">Review the solutions and try again.</p>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -454,10 +517,15 @@ export default function AptitudeDayPage() {
                 </p>
               </div>
             </div>
-            {testSubmitted ? (
+            {testPassed ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
-                Completed
+                Completed ({testScore}%)
+              </span>
+            ) : testSubmitted ? (
+              <span className="flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                <XCircle className="h-4 w-4" />
+                {testScore}% — Need {PASS_PERCENT}% to pass
               </span>
             ) : (
               <span className="text-xs text-gray-500">Not Started</span>
@@ -570,20 +638,22 @@ export default function AptitudeDayPage() {
               </div>
             </>
           ) : (
-            <div className="rounded-lg border-2 border-green-200 bg-green-50 p-6 text-center">
-              <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-600" />
+            <div className={`rounded-lg border-2 p-6 text-center ${testPassed ? 'border-green-200 bg-green-50' : 'border-amber-200 bg-amber-50'}`}>
+              {testPassed ? (
+                <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-600" />
+              ) : (
+                <XCircle className="mx-auto mb-4 h-16 w-16 text-amber-600" />
+              )}
               <h3 className="mb-2 text-2xl font-bold text-gray-900">
-                Test Completed!
+                {testPassed ? 'Test Passed!' : 'Test Completed'}
               </h3>
               <p className="mb-4 text-lg font-semibold text-gray-700">
-                Your Score: {calculateTestScore()}%
+                Your Score: {calculateTestScore()}% {testPassed ? '' : `(Need ${PASS_PERCENT}% to pass)`}
               </p>
               <p className="text-sm text-gray-600">
                 You answered{' '}
                 {
-                  aptitudeTestQuestions.filter(
-                    (q) => testAnswers[q.id] === q.correct
-                  ).length
+                  aptitudeTestQuestions.filter((q: any) => testAnswers[q.id] === (q.correctIndex ?? q.correct)).length
                 }{' '}
                 out of {aptitudeTestQuestions.length} questions correctly.
               </p>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import DashboardLayout from '@/components/layout/DashboardLayout'
 import StatCard from '@/components/ui/StatCard'
 import ProgressCard from '@/components/ui/ProgressCard'
@@ -18,38 +19,54 @@ import {
   Code2,
 } from 'lucide-react'
 import { studentData } from '@/data/mockData'
-import { useLearningProgress } from '@/contexts/LearningProgressContext'
-import { aptitudeModule, reasoningModule, verbalModule, pythonModule, getLeafIds } from '@/data/learningModules'
+import { getDashboardProgress } from '@/lib/progressApi'
+
+function getStudentName(): string {
+  if (typeof window === 'undefined') return studentData.name
+  try {
+    const raw = localStorage.getItem('user')
+    if (!raw) return studentData.name
+    const user = JSON.parse(raw) as { name?: string }
+    return user?.name ?? studentData.name
+  } catch {
+    return studentData.name
+  }
+}
 
 export default function DashboardPage() {
-  const { completedIds } = useLearningProgress()
-  const aptitudeLeaves = getLeafIds(aptitudeModule)
-  const reasoningLeaves = getLeafIds(reasoningModule)
-  const verbalLeaves = getLeafIds(verbalModule)
-  const pythonLeaves = getLeafIds(pythonModule)
-  const progressAptitude = aptitudeLeaves.length
-    ? Math.round((aptitudeLeaves.filter((id) => completedIds.has(id)).length / aptitudeLeaves.length) * 100)
-    : 0
-  const progressReasoning = reasoningLeaves.length
-    ? Math.round((reasoningLeaves.filter((id) => completedIds.has(id)).length / reasoningLeaves.length) * 100)
-    : 0
-  const progressVerbal = verbalLeaves.length
-    ? Math.round((verbalLeaves.filter((id) => completedIds.has(id)).length / verbalLeaves.length) * 100)
-    : 0
-  const progressPython = pythonLeaves.length
-    ? Math.round((pythonLeaves.filter((id) => completedIds.has(id)).length / pythonLeaves.length) * 100)
-    : 0
-  const totalLeaves = aptitudeLeaves.length + reasoningLeaves.length + verbalLeaves.length + pythonLeaves.length
-  const overallProgress = totalLeaves
-    ? Math.round(
-        ((aptitudeLeaves.filter((id) => completedIds.has(id)).length +
-          reasoningLeaves.filter((id) => completedIds.has(id)).length +
-          verbalLeaves.filter((id) => completedIds.has(id)).length +
-          pythonLeaves.filter((id) => completedIds.has(id)).length) /
-          totalLeaves) *
-          100
-      )
-    : 0
+  const studentName = getStudentName()
+  const [chapterProgress, setChapterProgress] = useState<Record<string, number>>({
+    aptitude: 0,
+    reasoning: 0,
+    verbal: 0,
+    python: 0,
+  })
+
+  useEffect(() => {
+    getDashboardProgress()
+      .then((data) => {
+        if (data && typeof data === 'object') {
+          setChapterProgress({
+            aptitude: Math.min(100, Math.max(0, Math.round(Number(data.aptitude) ?? 0))),
+            reasoning: Math.min(100, Math.max(0, Math.round(Number(data.reasoning) ?? 0))),
+            verbal: Math.min(100, Math.max(0, Math.round(Number(data.verbal) ?? 0))),
+            python: Math.min(100, Math.max(0, Math.round(Number(data.python) ?? 0))),
+          })
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  const values = Object.values(chapterProgress)
+  const overall =
+    values.length === 4
+      ? Math.min(100, Math.max(0, Math.round(values.reduce((a, b) => a + b, 0) / 4)))
+      : 0
+
+  const aptitude = chapterProgress.aptitude ?? 0
+  const reasoning = chapterProgress.reasoning ?? 0
+  const verbal = chapterProgress.verbal ?? 0
+  const python = chapterProgress.python ?? 0
 
   return (
     <DashboardLayout>
@@ -58,7 +75,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="mt-2 text-gray-600">
-            Welcome back, {studentData.name}! Here's your learning overview.
+            Welcome back, {studentName}! Here's your learning overview.
           </p>
         </div>
 
@@ -72,7 +89,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700">Quantitative Aptitude</p>
-                <p className="text-xl font-bold text-gray-900">{progressAptitude}% complete</p>
+                <p className="text-xl font-bold text-gray-900">{aptitude}% complete</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4">
@@ -81,7 +98,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700">Logical Reasoning</p>
-                <p className="text-xl font-bold text-gray-900">{progressReasoning}% complete</p>
+                <p className="text-xl font-bold text-gray-900">{reasoning}% complete</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4">
@@ -90,7 +107,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700">Verbal Ability</p>
-                <p className="text-xl font-bold text-gray-900">{progressVerbal}% complete</p>
+                <p className="text-xl font-bold text-gray-900">{verbal}% complete</p>
               </div>
             </div>
             <div className="flex items-center gap-3 rounded-lg border border-gray-100 bg-gray-50/50 p-4">
@@ -99,18 +116,18 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700">Python Programming</p>
-                <p className="text-xl font-bold text-gray-900">{progressPython}% complete</p>
+                <p className="text-xl font-bold text-gray-900">{python}% complete</p>
               </div>
             </div>
           </div>
-          <p className="mt-3 text-sm text-gray-500">Overall: {overallProgress}% of all modules complete</p>
+          <p className="mt-3 text-sm text-gray-500">Overall: {overall}% of all modules complete</p>
         </div>
 
         {/* Stats Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard
             title="Overall Progress"
-            value={`${overallProgress}%`}
+            value={`${overall}%`}
             icon={TrendingUp}
             trend="Based on completed modules"
           />
@@ -208,7 +225,7 @@ export default function DashboardPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           <ProgressCard
             title="Course Completion"
-            progress={overallProgress}
+            progress={overall}
             color="bg-primary-600"
           />
           <ProgressCard

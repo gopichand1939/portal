@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import ProgressCard from '@/components/ui/ProgressCard'
 import {
@@ -12,56 +12,90 @@ import {
   CheckCircle2,
   Circle,
   ArrowLeft,
+  XCircle,
 } from 'lucide-react'
 import Link from 'next/link'
-import {
-  dailyProgress,
-  practiceQuestions,
-  testQuestions,
-  dailySchedule,
-} from '@/data/mockData'
+import { practiceQuestions, testQuestions } from '@/data/mockData'
+
+const PASS_PERCENT = 60
 
 export default function ReasoningDayPage() {
   const params = useParams()
   const day = params?.day as string
   const dayNumber = parseInt(day?.replace('day-', '') || '1')
 
-  const [practiceAnswers, setPracticeAnswers] = useState<{
-    [key: number]: string
-  }>({})
+  const [learnComplete, setLearnComplete] = useState(false)
+  const [practiceAnswers, setPracticeAnswers] = useState<{ [key: number]: string }>({})
   const [practiceSubmitted, setPracticeSubmitted] = useState(false)
+  const [practiceScore, setPracticeScore] = useState<number | null>(null)
   const [testAnswers, setTestAnswers] = useState<{ [key: number]: number }>({})
   const [testSubmitted, setTestSubmitted] = useState(false)
+  const [testScore, setTestScore] = useState<number | null>(null)
   const [currentTestQuestion, setCurrentTestQuestion] = useState(0)
 
-  const overallProgress =
-    (dailyProgress.learn.progress +
-      dailyProgress.practice.progress +
-      dailyProgress.test.progress) /
-    3
+  const reasoningPracticeQuestions = useMemo(
+    () => practiceQuestions.filter((q) => ['Blood Relations', 'Coding & Decoding'].includes(q.topic)),
+    []
+  )
+  const reasoningTestQuestions = useMemo(
+    () => testQuestions.filter((q) => ['Blood Relations', 'Coding & Decoding', 'Series & Sequences'].includes(q.topic)),
+    []
+  )
+
+  const practicePassed = practiceScore !== null && practiceScore >= PASS_PERCENT
+  const testPassed = testScore !== null && testScore >= PASS_PERCENT
+
+  const scheduleItems = useMemo(
+    () => [
+      { activity: 'Learn Section', status: learnComplete ? ('completed' as const) : ('pending' as const) },
+      { activity: 'Practice Section', status: !practiceSubmitted ? ('pending' as const) : practicePassed ? ('completed' as const) : ('in-progress' as const) },
+      { activity: 'Test Section', status: !testSubmitted ? ('pending' as const) : testPassed ? ('completed' as const) : ('in-progress' as const) },
+    ],
+    [learnComplete, practiceSubmitted, practicePassed, testSubmitted, testPassed]
+  )
+
+  const overallProgress = useMemo(() => {
+    let n = 0
+    if (learnComplete) n += 1
+    if (practicePassed) n += 1
+    if (testPassed) n += 1
+    return (n / 3) * 100
+  }, [learnComplete, practicePassed, testPassed])
+
+  const handlePracticeSubmit = () => {
+    if (reasoningPracticeQuestions.length === 0) {
+      setPracticeSubmitted(true)
+      setPracticeScore(0)
+      return
+    }
+    let correct = 0
+    reasoningPracticeQuestions.forEach((q: any) => {
+      const user = String(practiceAnswers[q.id] ?? '').trim().toLowerCase()
+      const expected = String(q.correctAnswer ?? '').trim().toLowerCase()
+      if (user && expected && user === expected) correct++
+    })
+    const pct = Math.round((correct / reasoningPracticeQuestions.length) * 100)
+    setPracticeScore(pct)
+    setPracticeSubmitted(true)
+  }
 
   const handleTestSubmit = () => {
+    if (reasoningTestQuestions.length === 0) {
+      setTestSubmitted(true)
+      setTestScore(0)
+      return
+    }
+    let correct = 0
+    reasoningTestQuestions.forEach((q: any) => {
+      const correctIdx = q.correctIndex ?? q.correct
+      if (testAnswers[q.id] === correctIdx) correct++
+    })
+    const pct = Math.round((correct / reasoningTestQuestions.length) * 100)
+    setTestScore(pct)
     setTestSubmitted(true)
   }
 
-  const calculateTestScore = () => {
-    let correct = 0
-    reasoningTestQuestions.forEach((q) => {
-      if (testAnswers[q.id] === q.correct) {
-        correct++
-      }
-    })
-    return Math.round((correct / reasoningTestQuestions.length) * 100)
-  }
-
-  // Filter questions for Reasoning section
-  const reasoningPracticeQuestions = practiceQuestions.filter((q) =>
-    ['Blood Relations', 'Coding & Decoding'].includes(q.topic)
-  )
-
-  const reasoningTestQuestions = testQuestions.filter((q) =>
-    ['Blood Relations', 'Coding & Decoding', 'Series & Sequences'].includes(q.topic)
-  )
+  const calculateTestScore = () => testScore ?? 0
 
   return (
     <div className="space-y-6">
@@ -93,7 +127,7 @@ export default function ReasoningDayPage() {
             </h2>
           </div>
           <div className="space-y-3">
-            {dailySchedule.map((item, index) => (
+            {scheduleItems.map((item, index) => (
               <div
                 key={index}
                 className="flex items-center gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4"
@@ -153,7 +187,7 @@ export default function ReasoningDayPage() {
                 </p>
               </div>
             </div>
-            {dailyProgress.learn.completed ? (
+            {learnComplete ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
                 Completed
@@ -193,6 +227,16 @@ export default function ReasoningDayPage() {
                 </div>
               </div>
             </div>
+            {!learnComplete && (
+              <div className="flex justify-end border-t border-gray-200 pt-4">
+                <button
+                  onClick={() => setLearnComplete(true)}
+                  className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+                >
+                  Mark Learn Complete
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -212,15 +256,18 @@ export default function ReasoningDayPage() {
                 </p>
               </div>
             </div>
-            {dailyProgress.practice.completed ? (
+            {practicePassed ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
-                Completed
+                Completed ({practiceScore}%)
+              </span>
+            ) : practiceSubmitted ? (
+              <span className="flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                <XCircle className="h-4 w-4" />
+                {practiceScore}% — Need {PASS_PERCENT}% to pass
               </span>
             ) : (
-              <span className="text-xs text-gray-500">
-                {dailyProgress.practice.progress}% Complete
-              </span>
+              <span className="text-xs text-gray-500">Not submitted</span>
             )}
           </div>
 
@@ -290,16 +337,26 @@ export default function ReasoningDayPage() {
             ))}
             {!practiceSubmitted ? (
               <button
-                onClick={() => setPracticeSubmitted(true)}
+                onClick={handlePracticeSubmit}
                 className="w-full rounded-lg bg-primary-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 Submit Practice Answers
               </button>
             ) : (
-              <div className="rounded-lg border-2 border-green-200 bg-green-50 p-4 text-center">
-                <CheckCircle className="mx-auto mb-2 h-8 w-8 text-green-600" />
-                <p className="text-sm font-semibold text-green-900">Practice Answers Submitted!</p>
-                <p className="mt-1 text-xs text-green-700">Review the solutions above.</p>
+              <div className={`rounded-lg border-2 p-4 text-center ${practicePassed ? 'border-green-200 bg-green-50' : 'border-amber-200 bg-amber-50'}`}>
+                {practicePassed ? (
+                  <>
+                    <CheckCircle className="mx-auto mb-2 h-8 w-8 text-green-600" />
+                    <p className="text-sm font-semibold text-green-900">Practice passed! Score: {practiceScore}%</p>
+                    <p className="mt-1 text-xs text-green-700">Review the solutions above.</p>
+                  </>
+                ) : (
+                  <>
+                    <XCircle className="mx-auto mb-2 h-8 w-8 text-amber-600" />
+                    <p className="text-sm font-semibold text-amber-900">Score: {practiceScore}%. Need {PASS_PERCENT}% to pass.</p>
+                    <p className="mt-1 text-xs text-amber-700">Review the solutions and try again.</p>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -319,10 +376,15 @@ export default function ReasoningDayPage() {
                 </p>
               </div>
             </div>
-            {testSubmitted ? (
+            {testPassed ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
-                Completed
+                Completed ({testScore}%)
+              </span>
+            ) : testSubmitted ? (
+              <span className="flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
+                <XCircle className="h-4 w-4" />
+                {testScore}% — Need {PASS_PERCENT}% to pass
               </span>
             ) : (
               <span className="text-xs text-gray-500">Not Started</span>
@@ -434,21 +496,21 @@ export default function ReasoningDayPage() {
               </div>
             </>
           ) : (
-            <div className="rounded-lg border-2 border-green-200 bg-green-50 p-6 text-center">
-              <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-600" />
+            <div className={`rounded-lg border-2 p-6 text-center ${testPassed ? 'border-green-200 bg-green-50' : 'border-amber-200 bg-amber-50'}`}>
+              {testPassed ? (
+                <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-600" />
+              ) : (
+                <XCircle className="mx-auto mb-4 h-16 w-16 text-amber-600" />
+              )}
               <h3 className="mb-2 text-2xl font-bold text-gray-900">
-                Test Completed!
+                {testPassed ? 'Test Passed!' : 'Test Completed'}
               </h3>
               <p className="mb-4 text-lg font-semibold text-gray-700">
-                Your Score: {calculateTestScore()}%
+                Your Score: {calculateTestScore()}% {testPassed ? '' : `(Need ${PASS_PERCENT}% to pass)`}
               </p>
               <p className="text-sm text-gray-600">
                 You answered{' '}
-                {
-                  reasoningTestQuestions.filter(
-                    (q) => testAnswers[q.id] === q.correct
-                  ).length
-                }{' '}
+                {reasoningTestQuestions.filter((q: any) => testAnswers[q.id] === (q.correctIndex ?? q.correct)).length}{' '}
                 out of {reasoningTestQuestions.length} questions correctly.
               </p>
             </div>

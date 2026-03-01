@@ -8,6 +8,7 @@ import {
   getCodingQuestionsForTopic,
 } from '@/data/codingPracticeQuestions'
 import { useLearningProgress } from '@/contexts/LearningProgressContext'
+import { completeContent, parseNodeIdToProgress } from '@/lib/progressApi'
 
 const PYTHON_DEFAULT = `# Write your Python code here
 # Read input with input()
@@ -35,13 +36,14 @@ function normalizeOutput(s: string): string {
 interface CodingPracticePanelProps {
   nodeId: string
   path: string[]
-  onMarkComplete?: () => void
+  /** Subject for progress (coding is always python) */
+  chapterKey?: 'python'
 }
 
 export default function CodingPracticePanel({
   nodeId,
   path,
-  onMarkComplete,
+  chapterKey = 'python',
 }: CodingPracticePanelProps) {
   const topicId = getTopicIdFromCodingNodeId(nodeId)
   const questions = getCodingQuestionsForTopic(topicId)
@@ -49,8 +51,10 @@ export default function CodingPracticePanel({
   const [code, setCode] = useState(PYTHON_DEFAULT)
   const [running, setRunning] = useState(false)
   const [testResults, setTestResults] = useState<{ passed: boolean; expected?: string; actual?: string }[] | null>(null)
-  const { isCompleted, markComplete } = useLearningProgress()
-  const completed = isCompleted(nodeId)
+  const { isCompleted, refreshProgress } = useLearningProgress()
+  const completed = isCompleted(nodeId, 'python')
+  const parsed = parseNodeIdToProgress(nodeId)
+  const moduleKey = parsed?.moduleKey ?? topicId
 
   const question = questions[currentQuestionIndex] ?? null
 
@@ -173,8 +177,16 @@ export default function CodingPracticePanel({
                 <button
                   type="button"
                   onClick={() => {
-                    markComplete(nodeId)
-                    onMarkComplete?.()
+                    if (completed) return
+                    completeContent({
+                      subject: 'python',
+                      moduleKey,
+                      contentType: 'CODING',
+                      correctCount: Math.max(7, testResults?.length ?? 8),
+                      moduleHasCoding: true,
+                    })
+                      .then((res) => res.ok && refreshProgress())
+                      .catch(() => {})
                   }}
                   disabled={completed}
                   className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-70"

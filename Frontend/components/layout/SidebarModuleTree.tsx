@@ -35,7 +35,14 @@ export default function SidebarModuleTree({
   const currentNodeId = searchParams.get('node') ?? ''
   const basePath = `/daily-learning/${moduleSlug}`
   const isActiveModule = pathname === basePath || pathname?.startsWith(basePath + '/')
-  const { isCompleted, completedIds } = useLearningProgress()
+  const { isCompleted, dashboardProgress } = useLearningProgress()
+  const chapterKey = moduleSlug
+  const chapterProgress: Record<string, number> = {
+    aptitude: dashboardProgress.aptitude,
+    verbal: dashboardProgress.verbal,
+    reasoning: dashboardProgress.reasoning,
+    python: dashboardProgress.python,
+  }
   const [expandedIds, setExpandedIds] = useState<Set<string>>(() =>
     new Set([root.id])
   )
@@ -61,7 +68,8 @@ export default function SidebarModuleTree({
         onClose={onClose}
         isActiveModule={isActiveModule}
         isCompleted={isCompleted}
-        completedIds={completedIds}
+        chapterKey={chapterKey}
+        chapterProgress={chapterProgress}
       />
     </div>
   )
@@ -76,8 +84,9 @@ interface SidebarTreeNodeProps {
   currentNodeId: string
   onClose?: () => void
   isActiveModule: boolean
-  isCompleted: (nodeId: string) => boolean
-  completedIds: Set<string>
+  isCompleted: (nodeId: string, chapterKey: string) => boolean
+  chapterKey: ModuleSlug
+  chapterProgress: Record<string, number>
 }
 
 function SidebarTreeNode({
@@ -90,7 +99,8 @@ function SidebarTreeNode({
   onClose,
   isActiveModule,
   isCompleted,
-  completedIds,
+  chapterKey,
+  chapterProgress,
 }: SidebarTreeNodeProps) {
   const hasChildren = node.children && node.children.length > 0
   const expanded = expandedIds.has(node.id)
@@ -98,14 +108,11 @@ function SidebarTreeNode({
   const isFinal = isFinalAssessment(node)
   const isSelected = isActiveModule && currentNodeId === node.id
   const leafIdsUnder = getLeafIdsUnder(node)
-  const completed = isLeafNode
-    ? isCompleted(node.id)
-    : leafIdsUnder.length > 0 && leafIdsUnder.every((id) => completedIds.has(id))
-  const completionPct =
-    !isLeafNode && leafIdsUnder.length > 0
-      ? Math.round((leafIdsUnder.filter((id) => completedIds.has(id)).length / leafIdsUnder.length) * 100)
-      : 0
   const isRootSection = depth === 0 && hasChildren
+  const completed = isLeafNode
+    ? isCompleted(node.id, chapterKey)
+    : leafIdsUnder.length > 0 && leafIdsUnder.every((id) => isCompleted(id, chapterKey))
+  const completionPct = isRootSection ? (chapterProgress[chapterKey] ?? 0) : 0
 
   if (isLeafNode && node.type) {
     const Icon =
@@ -200,7 +207,8 @@ function SidebarTreeNode({
               onClose={onClose}
               isActiveModule={isActiveModule}
               isCompleted={isCompleted}
-              completedIds={completedIds}
+              chapterKey={chapterKey}
+              chapterProgress={chapterProgress}
             />
           ))}
       </div>

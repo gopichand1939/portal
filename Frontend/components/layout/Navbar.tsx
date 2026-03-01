@@ -1,14 +1,76 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Bell, Search, User, Menu } from 'lucide-react'
-import { studentData } from '@/data/mockData'
+import { useRouter } from 'next/navigation'
+import { Bell, Search, User, Menu, LogOut, ChevronDown } from 'lucide-react'
+import { API_AUTH_PROFILE } from '@/lib/constants'
 
 interface NavbarProps {
   onMenuClick?: () => void
 }
 
+type ProfileUser = { id?: number; name?: string; email?: string } | null
+
+function getProfileFromStorage(): ProfileUser {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = localStorage.getItem('user')
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as { id?: number; name?: string; email?: string }
+    return parsed
+  } catch {
+    return null
+  }
+}
+
 export default function Navbar({ onMenuClick }: NavbarProps) {
+  const router = useRouter()
+  const [user, setUser] = useState<ProfileUser>(null)
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    setUser(getProfileFromStorage())
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+    if (!token) return
+    fetch(API_AUTH_PROFILE, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: 'no-store',
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && typeof data === 'object') {
+          const profileData = { id: data.id, name: data.name, email: data.email }
+          localStorage.setItem('user', JSON.stringify(profileData))
+          setUser(profileData)
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const displayName = user?.name ?? (user?.email ? user.email : 'Guest')
+  const hasToken = typeof window !== 'undefined' && !!localStorage.getItem('token')
+
+  const handleLogout = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+    }
+    setDropdownOpen(false)
+    router.push('/login')
+  }
+
   return (
     <nav className="fixed top-0 z-30 w-full border-b border-gray-200 bg-white lg:pl-64">
       <div className="flex h-16 items-center justify-between">
@@ -45,14 +107,42 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
               <Bell className="h-5 w-5" />
               <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500"></span>
             </button>
-            <div className="flex items-center gap-3">
+            <div className="relative flex items-center gap-3" ref={dropdownRef}>
               <div className="hidden text-right sm:block">
-                <p className="text-sm font-medium text-gray-900">{studentData.name}</p>
-                <p className="text-xs text-gray-500">{studentData.rollNumber}</p>
+                <p className="text-sm font-medium text-gray-900">
+                  {hasToken ? `Welcome, ${displayName}` : 'Guest'}
+                </p>
+                {user?.email && (
+                  <p className="text-xs text-gray-500 truncate max-w-[180px]">{user.email}</p>
+                )}
               </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+              <button
+                type="button"
+                onClick={() => setDropdownOpen((o) => !o)}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-700 hover:bg-primary-200"
+                aria-expanded={dropdownOpen}
+              >
                 <User className="h-5 w-5" />
-              </div>
+                <ChevronDown className="absolute right-0 bottom-0 h-3 w-3 text-primary-600" />
+              </button>
+              {dropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
+                  <div className="border-b border-gray-100 px-4 py-2">
+                    <p className="text-sm font-medium text-gray-900 truncate">{displayName}</p>
+                    {user?.email && (
+                      <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

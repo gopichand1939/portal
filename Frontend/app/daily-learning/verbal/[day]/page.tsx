@@ -1,34 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import ProgressCard from '@/components/ui/ProgressCard'
 import {
   BookOpen,
   CheckCircle,
   FileText,
-  Clock,
   Calendar,
   CheckCircle2,
   Circle,
   ArrowLeft,
 } from 'lucide-react'
 import Link from 'next/link'
-import {
-  dailyProgress,
-  dailySchedule,
-} from '@/data/mockData'
 
 export default function VerbalDayPage() {
   const params = useParams()
   const day = params?.day as string
   const dayNumber = parseInt(day?.replace('day-', '') || '1')
 
-  const overallProgress =
-    (dailyProgress.learn.progress +
-      dailyProgress.practice.progress +
-      dailyProgress.test.progress) /
-    3
+  const [learnComplete, setLearnComplete] = useState(false)
+
+  const scheduleItems = useMemo(
+    () => [
+      { activity: 'Learn Section', status: learnComplete ? ('completed' as const) : ('pending' as const) },
+      { activity: 'Practice Section', status: 'pending' as const },
+      { activity: 'Test Section', status: 'pending' as const },
+    ],
+    [learnComplete]
+  )
+
+  const overallProgress = useMemo(() => (learnComplete ? (1 / 3) * 100 : 0), [learnComplete])
 
   return (
     <div className="space-y-6">
@@ -60,7 +62,7 @@ export default function VerbalDayPage() {
             </h2>
           </div>
           <div className="space-y-3">
-            {dailySchedule.map((item, index) => (
+            {scheduleItems.map((item, index) => (
               <div
                 key={index}
                 className="flex items-center gap-4 rounded-lg border border-gray-200 bg-gray-50 p-4"
@@ -120,7 +122,7 @@ export default function VerbalDayPage() {
                 </p>
               </div>
             </div>
-            {dailyProgress.learn.completed ? (
+            {learnComplete ? (
               <span className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800">
                 <CheckCircle className="h-4 w-4" />
                 Completed
@@ -160,6 +162,16 @@ export default function VerbalDayPage() {
                 </div>
               </div>
             </div>
+            {!learnComplete && (
+              <div className="flex justify-end border-t border-gray-200 pt-4">
+                <button
+                  onClick={() => setLearnComplete(true)}
+                  className="rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+                >
+                  Mark Learn Complete
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

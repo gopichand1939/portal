@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight, CheckCircle, HelpCircle } from 'lucide-react'
+import { MIN_CORRECT_REQUIRED } from '@/lib/constants'
+import type { Subject } from '@/lib/constants'
+import { completeContent } from '@/lib/progressApi'
 
 interface ExerciseQuestion {
   id: number
@@ -17,9 +20,19 @@ interface Exercise {
 
 interface ExercisePanelProps {
   exercise: Exercise
+  subject: Subject
+  moduleKey: string
+  onProgressComplete?: () => void
+  moduleHasCoding?: boolean
 }
 
-export default function ExercisePanel({ exercise }: ExercisePanelProps) {
+export default function ExercisePanel({
+  exercise,
+  subject,
+  moduleKey,
+  onProgressComplete,
+  moduleHasCoding,
+}: ExercisePanelProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [submitted, setSubmitted] = useState(false)
@@ -30,9 +43,29 @@ export default function ExercisePanel({ exercise }: ExercisePanelProps) {
   const showFeedback = selected !== undefined
   const isCorrect = q && selected === q.correctIndex
 
-  const score = submitted
-    ? exercise.questions.filter((q) => answers[q.id] === q.correctIndex).length
-    : 0
+  const correctCount = exercise.questions.filter((q) => answers[q.id] === q.correctIndex).length
+  const score = submitted ? correctCount : 0
+
+  const handleFinishOrNext = () => {
+    if (currentIndex < total - 1) {
+      setCurrentIndex((i) => i + 1)
+      return
+    }
+    setSubmitted(true)
+    if (correctCount >= MIN_CORRECT_REQUIRED) {
+      completeContent({
+        subject,
+        moduleKey,
+        contentType: 'EXERCISE',
+        correctCount,
+        moduleHasCoding,
+      })
+        .then((res) => {
+          if (res.ok) onProgressComplete?.()
+        })
+        .catch(() => {})
+    }
+  }
 
   if (submitted) {
     return (
@@ -145,10 +178,7 @@ export default function ExercisePanel({ exercise }: ExercisePanelProps) {
         {!submitted ? (
           <button
             type="button"
-            onClick={() => {
-              if (currentIndex < total - 1) setCurrentIndex((i) => i + 1)
-              else setSubmitted(true)
-            }}
+            onClick={handleFinishOrNext}
             disabled={selected === undefined}
             className="rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
           >

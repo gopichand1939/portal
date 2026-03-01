@@ -43,6 +43,7 @@ function VerbalContent() {
         <ModuleContentPanel
           selectedNode={selectedNode}
           path={selectedPath}
+          chapterKey="verbal"
         />
       </div>
     </div>

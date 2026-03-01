@@ -42,6 +42,7 @@ function AptitudeContent() {
         <ModuleContentPanel
           selectedNode={selectedNode}
           path={selectedPath}
+          chapterKey="aptitude"
         />
 
       </div>

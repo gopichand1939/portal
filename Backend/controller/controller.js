@@ -131,6 +131,24 @@ const me = async (req, res) => {
   }
 };
 
+const profile = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await findUserById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    return res.json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Failed to get profile' });
+  }
+};
+
 const resetPassword = async (req, res) => {
   try {
     const email = req.body.email;
@@ -162,5 +180,6 @@ module.exports = {
   register,
   login,
   me,
+  profile,
   resetPassword,
 };

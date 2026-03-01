@@ -17,7 +17,6 @@ import {
   reasoningModule,
   verbalModule,
   pythonModule,
-  getLeafIds,
 } from '@/data/learningModules'
 
 const SUBJECTS = [
@@ -95,7 +94,7 @@ const colorClasses = {
 } as const
 
 export default function DailyLearningPage() {
-  const { completedIds } = useLearningProgress()
+  const { dashboardProgress } = useLearningProgress()
 
   return (
     <div className="mx-auto max-w-6xl space-y-8">
@@ -110,10 +109,7 @@ export default function DailyLearningPage() {
 
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
           {SUBJECTS.map((subject) => {
-            const leafIds = getLeafIds(subject.module)
-            const completed = leafIds.filter((id) => completedIds.has(id)).length
-            const total = leafIds.length
-            const percent = total > 0 ? Math.round((completed / total) * 100) : 0
+            const percent = dashboardProgress[subject.slug as keyof typeof dashboardProgress] ?? 0
             const colors = colorClasses[subject.color]
             const Icon = subject.icon
 

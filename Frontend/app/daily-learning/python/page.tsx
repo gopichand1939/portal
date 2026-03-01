@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import ModuleContentPanel from '@/components/learning/ModuleContentPanel'
-import { pythonModule, findNodeById } from '@/data/learningModules'
+import { pythonModule, findNodeById, getLeafIds } from '@/data/learningModules'
+import { parseNodeIdToProgress } from '@/lib/progressApi'
 import type { ModuleNode } from '@/data/learningModules'
 
 function PythonContent() {
@@ -18,6 +19,9 @@ function PythonContent() {
       ? { selectedNode: found.node, selectedPath: found.path }
       : { selectedNode: null, selectedPath: [] }
   }, [nodeId])
+  const moduleKey = selectedNode ? parseNodeIdToProgress(selectedNode.id)?.moduleKey : undefined
+  const pythonLeafIds = useMemo(() => getLeafIds(pythonModule), [])
+  const moduleHasCoding = moduleKey ? pythonLeafIds.includes(moduleKey + '-coding') : false
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -42,6 +46,8 @@ function PythonContent() {
         <ModuleContentPanel
           selectedNode={selectedNode}
           path={selectedPath}
+          chapterKey="python"
+          moduleHasCoding={moduleHasCoding}
         />
       </div>
     </div>

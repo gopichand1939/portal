@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Clock, ClipboardCheck, Trophy } from 'lucide-react'
+import { MIN_CORRECT_REQUIRED } from '@/lib/constants'
+import type { Subject } from '@/lib/constants'
+import { completeContent } from '@/lib/progressApi'
 
 interface AssignmentQuestion {
   id: number
@@ -18,11 +21,21 @@ interface Assignment {
 
 interface AssignmentPanelProps {
   assignment: Assignment
+  subject: Subject
+  moduleKey: string
+  onProgressComplete?: () => void
+  moduleHasCoding?: boolean
 }
 
 const estimateMinutes = (count: number) => Math.max(5, Math.ceil((count * 1.2)))
 
-export default function AssignmentPanel({ assignment }: AssignmentPanelProps) {
+export default function AssignmentPanel({
+  assignment,
+  subject,
+  moduleKey,
+  onProgressComplete,
+  moduleHasCoding,
+}: AssignmentPanelProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [submitted, setSubmitted] = useState(false)
@@ -30,11 +43,30 @@ export default function AssignmentPanel({ assignment }: AssignmentPanelProps) {
   const total = assignment.questions.length
   const q = assignment.questions[currentIndex]
   const selected = q ? answers[q.id] : undefined
-  const answeredCount = Object.keys(answers).length
-  const score = submitted
-    ? assignment.questions.filter((q) => answers[q.id] === q.correctIndex).length
-    : 0
+  const correctCount = assignment.questions.filter((q) => answers[q.id] === q.correctIndex).length
+  const score = submitted ? correctCount : 0
   const accuracy = total > 0 ? Math.round((score / total) * 100) : 0
+
+  const handleSubmit = () => {
+    if (currentIndex < total - 1) {
+      setCurrentIndex((i) => i + 1)
+      return
+    }
+    setSubmitted(true)
+    if (correctCount >= MIN_CORRECT_REQUIRED) {
+      completeContent({
+        subject,
+        moduleKey,
+        contentType: 'ASSIGNMENT',
+        correctCount,
+        moduleHasCoding,
+      })
+        .then((res) => {
+          if (res.ok) onProgressComplete?.()
+        })
+        .catch(() => {})
+    }
+  }
 
   if (submitted) {
     const message =
@@ -171,10 +203,7 @@ export default function AssignmentPanel({ assignment }: AssignmentPanelProps) {
         </button>
         <button
           type="button"
-          onClick={() => {
-            if (currentIndex < total - 1) setCurrentIndex((i) => i + 1)
-            else setSubmitted(true)
-          }}
+          onClick={handleSubmit}
           disabled={selected === undefined}
           className="rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
