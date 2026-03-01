@@ -1,4 +1,6 @@
 // Env is loaded in server.js before this file is required
+// This server is API-only. Do NOT add routes for /, /_next/*, or static assets.
+// Frontend runs separately (next dev / next start on port 3000). API only.
 const express = require("express");
 const cors = require("cors");
 

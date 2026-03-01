@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils'
 import type { ModuleNode } from '@/data/learningModules'
 import { getLeafIdsUnder } from '@/data/learningModules'
 import { useLearningProgress } from '@/contexts/LearningProgressContext'
+import type { Subject } from '@/lib/constants'
 
 type ModuleSlug = 'aptitude' | 'reasoning' | 'verbal' | 'python'
 
@@ -84,7 +85,7 @@ interface SidebarTreeNodeProps {
   currentNodeId: string
   onClose?: () => void
   isActiveModule: boolean
-  isCompleted: (nodeId: string, chapterKey: string) => boolean
+  isCompleted: (nodeId: string, subject: Subject) => boolean
   chapterKey: ModuleSlug
   chapterProgress: Record<string, number>
 }

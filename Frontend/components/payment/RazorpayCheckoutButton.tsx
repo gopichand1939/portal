@@ -35,7 +35,8 @@ export default function RazorpayCheckoutButton({
     setError(null)
     setLoading(true)
     try {
-      const createRes = await fetch('/api/razorpay/order', {
+      const base = process.env.NEXT_PUBLIC_BACKEND_URL ?? ''
+      const createRes = await fetch(`${base}/razorpay/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -62,7 +63,7 @@ export default function RazorpayCheckoutButton({
         description,
         order_id: orderData.orderId,
         handler: async (response: any) => {
-          const verifyRes = await fetch('/api/razorpay/verify', {
+          const verifyRes = await fetch(`${base}/razorpay/verify`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(response),

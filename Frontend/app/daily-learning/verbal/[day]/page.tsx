@@ -14,6 +14,8 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+type ScheduleStatus = 'pending' | 'in-progress' | 'completed'
+
 export default function VerbalDayPage() {
   const params = useParams()
   const day = params?.day as string
@@ -22,10 +24,10 @@ export default function VerbalDayPage() {
   const [learnComplete, setLearnComplete] = useState(false)
 
   const scheduleItems = useMemo(
-    () => [
-      { activity: 'Learn Section', status: learnComplete ? ('completed' as const) : ('pending' as const) },
-      { activity: 'Practice Section', status: 'pending' as const },
-      { activity: 'Test Section', status: 'pending' as const },
+    (): Array<{ activity: string; status: ScheduleStatus }> => [
+      { activity: 'Learn Section', status: learnComplete ? 'completed' : 'pending' },
+      { activity: 'Practice Section', status: 'pending' },
+      { activity: 'Test Section', status: 'pending' },
     ],
     [learnComplete]
   )

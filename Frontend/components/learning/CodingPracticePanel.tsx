@@ -8,6 +8,7 @@ import {
   getCodingQuestionsForTopic,
 } from '@/data/codingPracticeQuestions'
 import { useLearningProgress } from '@/contexts/LearningProgressContext'
+import type { Subject } from '@/lib/constants'
 import { completeContent, parseNodeIdToProgress } from '@/lib/progressApi'
 
 const PYTHON_DEFAULT = `# Write your Python code here
@@ -16,7 +17,8 @@ const PYTHON_DEFAULT = `# Write your Python code here
 `
 
 async function runPythonCode(code: string, stdin: string): Promise<{ stdout: string; stderr: string }> {
-  const res = await fetch('/api/run-code', {
+  const base = process.env.NEXT_PUBLIC_BACKEND_URL ?? ''
+  const res = await fetch(`${base}/run-code`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ code, stdin }),
@@ -36,8 +38,8 @@ function normalizeOutput(s: string): string {
 interface CodingPracticePanelProps {
   nodeId: string
   path: string[]
-  /** Subject for progress (coding is always python) */
-  chapterKey?: 'python'
+  /** Subject for progress (coding is always python in practice) */
+  chapterKey?: Subject
 }
 
 export default function CodingPracticePanel({

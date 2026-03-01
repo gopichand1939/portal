@@ -1,8 +1,6 @@
-// Backend base URL — switch to localhost when developing locally
+// Backend base URL — set NEXT_PUBLIC_BACKEND_URL or uses fallback
 const DEPLOYED_BACKEND = 'https://portal-dhz7.onrender.com'
-// const DEPLOYED_BACKEND = 'http://localhost:15013'
-
-export const API_BASE_URL = DEPLOYED_BACKEND
+export const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || DEPLOYED_BACKEND
 
 // Auth
 export const API_AUTH_LOGIN = `${API_BASE_URL}/api/auth/login`
