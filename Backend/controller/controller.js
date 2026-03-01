@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const {
   findUserByEmail,
   findUserById,
   createUser,
   updatePasswordByEmail,
+  findCollegeStudentByRegNo,
 } = require('../models/models');
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -12,174 +14,130 @@ const TOKEN_EXPIRES_IN = process.env.TOKEN_EXPIRES_IN;
 
 const register = async (req, res) => {
   try {
-    if (!JWT_SECRET || !TOKEN_EXPIRES_IN) {
-      const body = { error: 'Server misconfigured: JWT_SECRET or TOKEN_EXPIRES_IN missing in .env' };
-      return res.status(500).json(body);
-    }
-    const email = req.body.email;
-    const password = req.body.password;
-    const name = req.body.name;
+    const {
+      email,
+      password,
+      name,
+      isBullayyaStudent,
+      registrationNumber,
+    } = req.body;
 
     if (!email || !password) {
-      const body = { error: 'Email and password required' };
-      return res.status(400).json(body);
+      return res.status(400).json({ error: 'Email and password required' });
     }
 
-    const existing = await findUserByEmail(email);
+    const normalizedEmail = email.trim().toLowerCase();
+    const existing = await findUserByEmail(normalizedEmail);
     if (existing) {
-      const body = { error: 'Email already registered' };
-      return res.status(409).json(body);
+      return res.status(409).json({ error: 'Email already registered' });
+    }
+
+    let finalName = name || null;
+    let department = null;
+    let year = null;
+
+    if (isBullayyaStudent === true) {
+      if (!registrationNumber) {
+        return res.status(400).json({ error: 'Registration number required' });
+      }
+
+      const student = await findCollegeStudentByRegNo(registrationNumber);
+      if (!student) {
+        return res.status(404).json({ error: 'Invalid registration number' });
+      }
+
+      finalName = student.student_name;
+      department = student.department;
+      year = student.year;
+    }
+
+    if (String(password).length < 6) {
+      return res.status(400).json({ error: 'Password too short' });
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    const user = await createUser(email, passwordHash, name || null);
 
-    const tokenPayload = {
-      userId: user.id,
-      email: user.email,
-    };
-    const tokenOptions = { expiresIn: TOKEN_EXPIRES_IN };
-    const token = jwt.sign(tokenPayload, JWT_SECRET, tokenOptions);
+    const user = await createUser({
+      email: normalizedEmail,
+      passwordHash,
+      name: finalName,
+      isBullayyaStudent,
+      registrationNumber,
+      department,
+      year,
+    });
 
-    const userResponse = {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    };
-    const responseBody = {
-      message: 'Registered',
-      user: userResponse,
-      token,
-    };
-    return res.status(201).json(responseBody);
+    const token = jwt.sign(
+      { sub: user.id },
+      JWT_SECRET,
+      { expiresIn: TOKEN_EXPIRES_IN }
+    );
+
+    res.status(201).json({ user, token });
   } catch (err) {
     console.error(err);
-    const message = err && typeof err.message === 'string' ? err.message : 'Registration failed';
-    const body = { error: 'Registration failed', detail: message };
-    return res.status(500).json(body);
+    res.status(500).json({ error: 'Registration failed' });
   }
 };
 
 const login = async (req, res) => {
   try {
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password } = req.body;
 
-    if (!email || !password) {
-      const body = { error: 'Email and password required' };
-      return res.status(400).json(body);
-    }
-
-    const user = await findUserByEmail(email);
+    const user = await findUserByEmail(email.toLowerCase());
     if (!user) {
-      const body = { error: 'Invalid email or password' };
-      return res.status(401).json(body);
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      const body = { error: 'Invalid email or password' };
-      return res.status(401).json(body);
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    const tokenPayload = {
-      userId: user.id,
-      email: user.email,
-    };
-    const tokenOptions = { expiresIn: TOKEN_EXPIRES_IN };
-    const token = jwt.sign(tokenPayload, JWT_SECRET, tokenOptions);
+    const token = jwt.sign(
+      { sub: user.id },
+      JWT_SECRET,
+      { expiresIn: TOKEN_EXPIRES_IN }
+    );
 
-    const userResponse = {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    };
-    const responseBody = {
-      message: 'Logged in',
-      user: userResponse,
-      token,
-    };
-    return res.json(responseBody);
+    res.json({ user, token });
   } catch (err) {
     console.error(err);
-    const body = { error: 'Login failed' };
-    return res.status(500).json(body);
+    res.status(500).json({ error: 'Login failed' });
   }
 };
 
 const me = async (req, res) => {
-  try {
-    const userId = req.userId;
-    const user = await findUserById(userId);
-
-    if (!user) {
-      const body = { error: 'User not found' };
-      return res.status(404).json(body);
-    }
-
-    const userResponse = {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    };
-    const responseBody = { user: userResponse };
-    return res.json(responseBody);
-  } catch (err) {
-    console.error(err);
-    const body = { error: 'Failed to get user' };
-    return res.status(500).json(body);
+  const user = await findUserById(req.userId);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
   }
-};
-
-const profile = async (req, res) => {
-  try {
-    const userId = req.userId;
-    const user = await findUserById(userId);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    return res.json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Failed to get profile' });
-  }
+  res.json({ user });
 };
 
 const resetPassword = async (req, res) => {
-  try {
-    const email = req.body.email;
-    const newPassword = req.body.newPassword;
-
-    if (!email || !newPassword) {
-      const body = { error: 'Email and new password required' };
-      return res.status(400).json(body);
-    }
-
-    if (String(newPassword).length < 6) {
-      const body = { error: 'Password must be at least 6 characters' };
-      return res.status(400).json(body);
-    }
-
-    const passwordHash = await bcrypt.hash(newPassword, 10);
-    const updated = await updatePasswordByEmail(email.trim(), passwordHash);
-
-    const responseBody = { message: 'Password reset successfully' };
-    return res.status(200).json(responseBody);
-  } catch (err) {
-    console.error(err);
-    const body = { error: 'Password reset failed' };
-    return res.status(500).json(body);
+  const { email, newPassword } = req.body;
+  const hash = await bcrypt.hash(newPassword, 10);
+  const updated = await updatePasswordByEmail(email, hash);
+  if (!updated) {
+    return res.status(404).json({ error: 'User not found' });
   }
+  res.json({ message: 'Password updated' });
+};
+
+const checkCollegeRegistration = async (req, res) => {
+  const { registrationNumber } = req.params;
+  const student = await findCollegeStudentByRegNo(registrationNumber);
+  if (!student) {
+    return res.status(404).json({ error: 'Registration not found' });
+  }
+  res.json({ exists: true, student });
 };
 
 module.exports = {
   register,
   login,
   me,
-  profile,
   resetPassword,
+  checkCollegeRegistration,
 };

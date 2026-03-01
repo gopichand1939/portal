@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useEffect } from 'react'
+import { Suspense, useState, useLayoutEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,8 +8,6 @@ import { Lock, Mail } from 'lucide-react'
 import { API_AUTH_LOGIN } from '@/lib/constants'
 
 function LoginFallback() {
-
-  
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50">
       <p className="text-gray-500">Loading…</p>
@@ -24,17 +22,17 @@ function LoginContent() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [checking, setChecking] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const justRegistered = searchParams.get('registered') === '1'
   const justReset = searchParams.get('reset') === '1'
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
     if (token) {
       router.replace('/dashboard')
       return
     }
-    setChecking(false)
+    setMounted(true)
   }, [router])
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,10 +64,10 @@ function LoginContent() {
     }
   }
 
-  if (checking) {
+  if (!mounted) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50">
-        <p className="text-gray-500">Checking login…</p>
+        <p className="text-gray-500">Loading…</p>
       </div>
     )
   }

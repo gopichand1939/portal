@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const AUTH_TOKEN_KEY = 'token'
@@ -13,7 +13,7 @@ export default function AuthGuard({
   const router = useRouter()
   const [allowed, setAllowed] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const token =
       typeof window !== 'undefined' ? localStorage.getItem(AUTH_TOKEN_KEY) : null
     if (!token) {
@@ -26,7 +26,7 @@ export default function AuthGuard({
   if (!allowed) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <p className="text-gray-500">Checking login…</p>
+        <p className="text-gray-500">Loading…</p>
       </div>
     )
   }
