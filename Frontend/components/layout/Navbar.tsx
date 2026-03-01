@@ -12,13 +12,16 @@ interface NavbarProps {
 
 type ProfileUser = { id?: number; name?: string; email?: string } | null
 
+type StoredUser = { id?: number; name?: string; firstName?: string; email?: string }
+
 function getProfileFromStorage(): ProfileUser {
   if (typeof window === 'undefined') return null
   try {
     const raw = localStorage.getItem('user')
     if (!raw) return null
-    const parsed = JSON.parse(raw) as { id?: number; name?: string; email?: string }
-    return parsed
+    const parsed = JSON.parse(raw) as StoredUser
+    const name = parsed.name ?? parsed.firstName ?? parsed.email
+    return name !== undefined ? { ...parsed, name } : parsed
   } catch {
     return null
   }
@@ -40,8 +43,9 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (data && typeof data === 'object') {
-          const profileData = { id: data.id, name: data.name, email: data.email }
+        if (data?.user && typeof data.user === 'object') {
+          const u = data.user
+          const profileData = { id: u.id, name: u.name ?? u.firstName ?? u.email, email: u.email }
           localStorage.setItem('user', JSON.stringify(profileData))
           setUser(profileData)
         }
@@ -110,7 +114,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
             <div className="relative flex items-center gap-3" ref={dropdownRef}>
               <div className="hidden text-right sm:block">
                 <p className="text-sm font-medium text-gray-900">
-                  {hasToken ? `Welcome, ${displayName}` : 'Guest'}
+                  {hasToken ? `Welcome, ${displayName}` : ''}
                 </p>
                 {user?.email && (
                   <p className="text-xs text-gray-500 truncate max-w-[180px]">{user.email}</p>

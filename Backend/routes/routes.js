@@ -3,6 +3,7 @@ const {
   register,
   login,
   me,
+  profile,
   resetPassword,
   checkCollegeRegistration,
 } = require('../controller/controller');

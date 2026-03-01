@@ -115,6 +115,8 @@ const me = async (req, res) => {
   res.json({ user });
 };
 
+const profile = me;
+
 const resetPassword = async (req, res) => {
   const { email, newPassword } = req.body;
   const hash = await bcrypt.hash(newPassword, 10);
@@ -138,6 +140,7 @@ module.exports = {
   register,
   login,
   me,
+  profile,
   resetPassword,
   checkCollegeRegistration,
 };

@@ -20,21 +20,55 @@ import {
 } from 'lucide-react'
 import { studentData } from '@/data/mockData'
 import { getDashboardProgress } from '@/lib/progressApi'
+import { API_AUTH_PROFILE } from '@/lib/constants'
 
-function getStudentName(): string {
-  if (typeof window === 'undefined') return studentData.name
-  try {
-    const raw = localStorage.getItem('user')
-    if (!raw) return studentData.name
-    const user = JSON.parse(raw) as { name?: string }
-    return user?.name ?? studentData.name
-  } catch {
-    return studentData.name
-  }
+function getDisplayName(user: { name?: string; firstName?: string; email?: string } | null): string {
+  if (!user) return 'there'
+  return user.name ?? user.firstName ?? user.email ?? 'there'
 }
 
 export default function DashboardPage() {
-  const studentName = getStudentName()
+  const [displayName, setDisplayName] = useState<string>('there')
+
+  useEffect(() => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+    if (!token) {
+      try {
+        const raw = localStorage.getItem('user')
+        if (raw) {
+          const user = JSON.parse(raw) as { name?: string; firstName?: string; email?: string }
+          setDisplayName(getDisplayName(user))
+        }
+      } catch {}
+      return
+    }
+    fetch(API_AUTH_PROFILE, {
+      headers: { Authorization: `Bearer ${token}` },
+      cache: 'no-store',
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.user) {
+          const name = getDisplayName(data.user)
+          setDisplayName(name)
+          try {
+            localStorage.setItem('user', JSON.stringify({ ...data.user, name: data.user.name ?? data.user.firstName ?? data.user.email }))
+          } catch {}
+        } else {
+          try {
+            const raw = localStorage.getItem('user')
+            if (raw) setDisplayName(getDisplayName(JSON.parse(raw)))
+          } catch {}
+        }
+      })
+      .catch(() => {
+        try {
+          const raw = localStorage.getItem('user')
+          if (raw) setDisplayName(getDisplayName(JSON.parse(raw)))
+        } catch {}
+      })
+  }, [])
+
   const [chapterProgress, setChapterProgress] = useState<Record<string, number>>({
     aptitude: 0,
     reasoning: 0,
@@ -75,7 +109,7 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
           <p className="mt-2 text-gray-600">
-            Welcome back, {studentName}! Here's your learning overview.
+            Welcome back, {displayName}! Here's your learning overview.
           </p>
         </div>
 
